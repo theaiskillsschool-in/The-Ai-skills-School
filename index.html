@@ -1,0 +1,2267 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The AI Skills School | Python and Excel automation</title>
+<meta name="description" content="The AI Skills School: Python and Excel automation for small businesses in India. Clean, merge and summarise messy spreadsheets, join the beginner course, or download practical templates and scripts.">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#1A7448">
+<meta property="og:type" content="website">
+<meta property="og:title" content="The AI Skills School">
+<meta property="og:description" content="Python and Excel automation for small businesses in India, plus a beginner course and practical digital products.">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Crect x='2' y='2' width='24' height='24' fill='none' stroke='%231A7448' stroke-width='2'/%3E%3Crect x='10.5' y='10.5' width='7' height='7' fill='%231A7448'/%3E%3C/svg%3E">
+<script>(function(){var d=document.documentElement;d.className+=' js';var h=(location.hash||'').replace('#','');d.setAttribute('data-v',['tools','course','products','contact'].indexOf(h)>-1?h:'home');})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a spreadsheet-flavoured studio site. One sticky header, five views (Home, Free tools, Course, Products, Contact) switched by the URL hash, one shared footer. */
+:root {
+  --bg: #F1F5F2;
+  --surface: #FFFFFF;
+  --ink: #13231C;
+  --muted: #52625A;
+  --line: #D3DDD6;
+  --grid: rgba(19, 35, 28, 0.06);
+  --accent: #1A7448;
+  --accent-ink: #FFFFFF;
+  --accent-soft: #DDEFE4;
+  --warn: #8F5400;
+  --warn-bg: #FBEBC8;
+  --shadow: 0 16px 36px -18px rgba(19, 35, 28, 0.38);
+  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0D1612;
+    --surface: #141F19;
+    --ink: #E5EEE8;
+    --muted: #9DADA3;
+    --line: #25352C;
+    --grid: rgba(229, 238, 232, 0.05);
+    --accent: #4DC38A;
+    --accent-ink: #072015;
+    --accent-soft: #14301F;
+    --warn: #F0BB5B;
+    --warn-bg: #33270C;
+    --shadow: 0 16px 36px -18px rgba(0, 0, 0, 0.7);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0D1612;
+  --surface: #141F19;
+  --ink: #E5EEE8;
+  --muted: #9DADA3;
+  --line: #25352C;
+  --grid: rgba(229, 238, 232, 0.05);
+  --accent: #4DC38A;
+  --accent-ink: #072015;
+  --accent-soft: #14301F;
+  --warn: #F0BB5B;
+  --warn-bg: #33270C;
+  --shadow: 0 16px 36px -18px rgba(0, 0, 0, 0.7);
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body { margin: 0; font: 400 1rem/1.6 var(--font-body); background: var(--bg); color: var(--ink); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+a { color: inherit; }
+img { max-width: 100%; }
+[hidden] { display: none !important; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+h1, h2, h3, h4, p, ul, ol, dl, dd, fieldset, figure { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+[id] { scroll-margin-top: 80px; }
+main:focus { outline: none; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.wrap { max-width: 1080px; margin-inline: auto; padding-inline: clamp(16px, 4vw, 32px); }
+.skip { position: absolute; left: 16px; top: -60px; z-index: 200; padding: 10px 14px; border-radius: 8px; background: var(--accent); color: var(--accent-ink); font-weight: 600; text-decoration: none; transition: top 0.2s; }
+.skip:focus { top: 12px; }
+
+/* Views */
+.js [data-view] { display: none; }
+.js[data-v="home"] [data-view="home"],
+.js[data-v="tools"] [data-view="tools"],
+.js[data-v="course"] [data-view="course"],
+.js[data-v="products"] [data-view="products"],
+.js[data-v="contact"] [data-view="contact"] { display: block; animation: viewin 0.45s cubic-bezier(0.2, 0.7, 0.2, 1); }
+@keyframes viewin { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+/* Header */
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50; background: var(--bg); border-bottom: 1px solid transparent; transition: border-color 0.2s; }
+@supports (background: color-mix(in srgb, red 50%, blue)) {
+  .top { background: color-mix(in srgb, var(--bg) 88%, transparent); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+}
+.top.scrolled { border-bottom-color: var(--line); }
+.bar { display: flex; align-items: center; gap: 16px; padding-block: 12px; }
+.brand { margin-right: auto; display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; letter-spacing: -0.01em; text-decoration: none; }
+.brand svg { width: 28px; height: 28px; flex: none; color: var(--accent); transition: transform 0.4s cubic-bezier(0.3, 0.7, 0.3, 1); }
+.brand:hover svg { transform: rotate(90deg); }
+.nav { display: flex; align-items: center; gap: 22px; font-size: 0.95rem; }
+.nav .link { position: relative; padding-block: 4px; text-decoration: none; color: var(--muted); transition: color 0.15s; }
+.nav .link::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 0.25s ease; }
+.nav .link:hover, .nav .link[aria-current="page"] { color: var(--ink); }
+.nav .link:hover::after, .nav .link[aria-current="page"]::after { transform: scaleX(1); }
+.actions { display: flex; align-items: center; gap: 10px; }
+.icon-btn { display: inline-grid; place-items: center; width: 40px; height: 40px; padding: 0; border: 1.5px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--ink); cursor: pointer; transition: border-color 0.15s, transform 0.2s; }
+.icon-btn:hover { border-color: var(--accent); }
+#theme:hover { transform: rotate(18deg); }
+.icon-btn svg { width: 18px; height: 18px; }
+.menu-btn { display: none; }
+.progress { position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: var(--accent); transform: scaleX(var(--p, 0)); transform-origin: left; }
+@media (max-width: 900px) {
+  .menu-btn { display: inline-grid; }
+  .nav { display: none; position: absolute; left: 0; right: 0; top: 100%; flex-direction: column; align-items: stretch; gap: 0; padding: 4px clamp(16px, 4vw, 32px) 12px; background: var(--bg); border-bottom: 1px solid var(--line); box-shadow: var(--shadow); }
+  .nav.open { display: flex; animation: viewin 0.25s ease; }
+  .nav .link { padding: 14px 2px; border-bottom: 1px solid var(--line); font-size: 1.05rem; }
+  .nav .link:last-child { border-bottom: 0; }
+  .nav .link::after { display: none; }
+}
+.actions .btn { white-space: nowrap; }
+@media (max-width: 480px) {
+  .bar { gap: 10px; }
+  .brand { gap: 8px; }
+  .brand span { font-size: 0.95rem; line-height: 1.15; }
+  .actions { gap: 6px; }
+  .actions .btn.small { padding: 9px 12px; }
+}
+
+/* Buttons */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 18px; border-radius: 8px; border: 1.5px solid var(--accent); background: transparent; color: var(--accent); font: 600 0.97rem/1.2 var(--font-body); text-decoration: none; text-align: center; cursor: pointer; transition: background 0.15s, filter 0.15s, transform 0.2s, box-shadow 0.2s; }
+.btn .arr { display: inline-block; transition: transform 0.2s; }
+.btn:hover .arr { transform: translateX(4px); }
+.btn.primary { background: var(--accent); color: var(--accent-ink); }
+.btn.primary:hover { filter: brightness(1.1); transform: translateY(-1px); box-shadow: var(--shadow); }
+.btn.ghost:hover { background: var(--accent-soft); }
+.btn.small { padding: 9px 14px; font-size: 0.9rem; }
+.btn[disabled] { opacity: 0.55; cursor: progress; }
+
+/* Entrance and reveal */
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.rise { animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) var(--d, 0ms) both; }
+@keyframes revealIn { from { opacity: 0.35; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+html.js .reveal:not(.in) { opacity: 0.35; transform: translateY(18px); }
+.reveal.in { animation: revealIn 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) var(--d, 0ms) backwards; }
+
+/* Type */
+.eyebrow { font: 500 0.74rem/1.4 var(--font-mono); letter-spacing: 0.09em; text-transform: uppercase; color: var(--accent); }
+h1 { font-family: var(--font-display); font-weight: 800; font-size: clamp(2.3rem, 6vw, 3.7rem); line-height: 1.03; letter-spacing: -0.025em; text-wrap: balance; }
+h1 mark { background: var(--accent-soft); color: inherit; padding: 0 0.12em; border-radius: 4px; }
+h2 { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.6rem, 3.6vw, 2.3rem); line-height: 1.12; letter-spacing: -0.02em; text-wrap: balance; }
+h3 { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.01em; }
+.lead { margin-top: 20px; max-width: 54ch; font-size: 1.08rem; color: var(--muted); }
+.sec-lead { margin-top: 12px; max-width: 60ch; color: var(--muted); }
+.fine { margin-top: 16px; max-width: 70ch; font-size: 0.9rem; color: var(--muted); }
+.mono-label { font: 500 0.72rem/1.2 var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.rot { display: inline-block; color: var(--accent); }
+.audience { margin-top: 14px; font: 500 0.9rem/1.5 var(--font-mono); color: var(--muted); }
+.cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.who { margin-top: 20px; max-width: 54ch; font-size: 0.88rem; color: var(--muted); }
+.pill { align-self: flex-start; display: inline-block; padding: 3px 9px; border: 1px solid var(--line); border-radius: 999px; font: 500 0.68rem/1.4 var(--font-mono); letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted); }
+.pill.live { background: var(--accent-soft); border-color: transparent; color: var(--accent); }
+.pill.soon { background: var(--warn-bg); border-color: transparent; color: var(--warn); }
+
+/* Sections */
+section { border-top: 1px solid var(--line); padding-block: clamp(40px, 7vw, 80px); }
+.hero + section, .page-hero + section { border-top: 0; }
+
+/* Hero */
+.hero { position: relative; overflow: hidden; }
+.hero::before, .hero::after, .page-hero::before { content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+.hero::before, .page-hero::before { background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size: 44px 44px; -webkit-mask-image: linear-gradient(to bottom, #000 35%, transparent); mask-image: linear-gradient(to bottom, #000 35%, transparent); }
+.hero::after { background: radial-gradient(380px circle at var(--mx, 50%) var(--my, 30%), var(--accent-soft), transparent 70%); opacity: 0; transition: opacity 0.4s; }
+@media (hover: hover) { .hero:hover::after { opacity: 0.9; } }
+.hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 56px); align-items: center; padding-block: clamp(28px, 6vw, 72px); }
+.hero-grid > * { min-width: 0; }
+@media (max-width: 860px) { .hero-grid { grid-template-columns: minmax(0, 1fr); } }
+
+/* Page hero (inner pages) */
+.page-hero { position: relative; overflow: hidden; border-bottom: 1px solid var(--line); }
+.page-hero > .wrap { position: relative; z-index: 1; padding-block: clamp(32px, 6vw, 64px); }
+.page-hero h1 { margin-top: 12px; font-size: clamp(2rem, 5vw, 3.2rem); }
+.page-hero.split > .wrap { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: clamp(24px, 5vw, 56px); align-items: center; }
+.page-hero.split > .wrap > * { min-width: 0; }
+@media (max-width: 860px) { .page-hero.split > .wrap { grid-template-columns: minmax(0, 1fr); } }
+
+/* Trust strip */
+.trust { background: var(--surface); border-block: 1px solid var(--line); }
+.trust ul { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px 24px; padding-block: 20px; }
+.trust li { display: flex; align-items: flex-start; gap: 12px; min-width: 0; }
+.trust svg { width: 26px; height: 26px; flex: none; margin-top: 2px; color: var(--accent); }
+.trust b { display: block; font-weight: 600; line-height: 1.3; }
+.trust span { font-size: 0.85rem; color: var(--muted); }
+
+/* Sheets and tables */
+.sheet { min-width: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; box-shadow: var(--shadow); }
+.sheet-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px 12px; border-bottom: 1px solid var(--line); font: 500 0.7rem/1.2 var(--font-mono); letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted); }
+.sheet-head b { color: var(--ink); font-weight: 500; }
+.sheet-head .tag { color: var(--accent); }
+.sheet-head .tag.bad { color: var(--warn); }
+.scroll { overflow-x: auto; }
+table.cells { border-collapse: collapse; width: 100%; font: 400 0.76rem/1.3 var(--font-mono); font-variant-numeric: tabular-nums; }
+.cells th, .cells td { border: 1px solid var(--line); padding: 6px 8px; text-align: left; white-space: nowrap; }
+.cells thead th, .cells tbody th { background: var(--bg); color: var(--muted); font-weight: 500; text-align: center; }
+.cells tbody th { width: 30px; }
+.cells tr.hdr td { font-weight: 500; }
+.cells td.bad { background: var(--warn-bg); color: var(--warn); }
+.cells td.chg { background: var(--accent-soft); color: var(--accent); }
+.cells tr.dup td { color: var(--muted); text-decoration: line-through; text-decoration-color: var(--line); }
+.cells tr.dup td.bad { color: var(--warn); }
+.cells tr td:first-of-type, .cells thead th:first-child { border-left: 0; }
+.cells td:last-child, .cells th:last-child { border-right: 0; }
+.cells [data-fix] { cursor: help; transition: filter 0.15s; }
+.cells td[data-fix]:hover, .cells td[data-fix]:focus-visible { filter: brightness(0.94); outline-offset: -2px; }
+.cells tr[data-fix]:hover td, .cells tr[data-fix]:focus-visible td { background: var(--warn-bg); }
+.arrow { display: flex; align-items: center; gap: 10px; padding: 8px 12px; border-block: 1px solid var(--line); background: var(--accent-soft); color: var(--accent); font: 500 0.72rem/1.3 var(--font-mono); letter-spacing: 0.04em; }
+.arrow svg { width: 16px; height: 16px; flex: none; animation: bob 1.8s ease-in-out infinite; }
+@keyframes bob { 0%, 100% { transform: translateY(-2px); } 50% { transform: translateY(2px); } }
+.fixline { min-height: 3.2em; padding: 10px 12px; border-top: 1px solid var(--line); font-size: 0.82rem; line-height: 1.5; }
+.sheet-note { padding: 0 12px 12px; font-size: 0.78rem; line-height: 1.5; color: var(--muted); }
+
+/* Services */
+.svc-list { margin-top: 32px; overflow: hidden; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+.svc { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 20px; padding: 20px clamp(16px, 3vw, 24px); transition: background 0.2s; }
+.svc + .svc { border-top: 1px solid var(--line); }
+.svc:hover { background: var(--accent-soft); }
+.svc h3 { font-size: 1.2rem; }
+.svc p { grid-column: 1; max-width: 60ch; color: var(--muted); }
+.svc code { grid-column: 1; font: 400 0.8rem/1.4 var(--font-mono); color: var(--accent); overflow-wrap: anywhere; }
+.price { grid-column: 2; grid-row: 1; align-self: start; text-align: right; font: 500 1.05rem/1.2 var(--font-mono); font-variant-numeric: tabular-nums; transition: transform 0.2s; }
+.svc:hover .price { transform: scale(1.06); transform-origin: right top; }
+.price small { display: block; margin-top: 2px; font-size: 0.7rem; letter-spacing: 0.04em; color: var(--muted); }
+
+/* Tiles (home teasers) */
+.tiles { margin-top: 32px; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+.tile { min-width: 0; display: flex; flex-direction: column; gap: 10px; padding: 22px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; text-decoration: none; transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s; }
+.tile:hover { transform: translateY(-5px); border-color: var(--accent); box-shadow: var(--shadow); }
+.tile h3 { font-size: 1.25rem; line-height: 1.2; }
+.tile p { color: var(--muted); }
+.tile .go { margin-top: auto; padding-top: 6px; font-weight: 600; color: var(--accent); }
+.tile .go .arr { display: inline-block; transition: transform 0.2s; }
+.tile:hover .go .arr { transform: translateX(5px); }
+
+/* Steps */
+.steps { margin-top: 32px; display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 24px; counter-reset: step; }
+.steps li { min-width: 0; padding-top: 16px; border-top: 2px solid var(--ink); counter-increment: step; transition: border-color 0.25s; }
+.steps li:hover { border-top-color: var(--accent); }
+.steps li::before { content: "Step " counter(step); display: block; margin-bottom: 8px; font: 500 0.72rem/1 var(--font-mono); letter-spacing: 0.09em; text-transform: uppercase; color: var(--accent); }
+.steps h3 { font-size: 1.1rem; }
+.steps p { margin-top: 6px; color: var(--muted); font-size: 0.95rem; }
+
+/* About */
+.about p { max-width: 62ch; }
+.about h2 + p { margin-top: 16px; }
+.about p + p { margin-top: 14px; color: var(--muted); }
+
+/* FAQ and accordions */
+.faq { margin-top: 28px; border-top: 1px solid var(--line); }
+.faq details { border-bottom: 1px solid var(--line); }
+.faq summary { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 16px 0; font-weight: 600; cursor: pointer; list-style: none; transition: color 0.15s; }
+.faq summary:hover { color: var(--accent); }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; flex: none; font: 400 1.4rem/1 var(--font-mono); color: var(--accent); }
+.faq details[open] summary::after { content: "\2212"; }
+.faq details p { padding-bottom: 18px; max-width: 64ch; color: var(--muted); }
+details[open] > :not(summary) { animation: fade 0.35s ease; }
+@keyframes fade { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+
+/* CTA and footer */
+.cta { padding-block: clamp(40px, 7vw, 72px); }
+.cta-box { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; padding: clamp(22px, 4vw, 40px); background: var(--accent); color: var(--accent-ink); border-radius: 12px; }
+.cta-box > div { min-width: 0; flex: 1 1 320px; }
+.cta-box h2 { color: inherit; }
+.cta-box p { margin-top: 10px; opacity: 0.92; }
+.cta-box .btn { background: var(--accent-ink); color: var(--accent); border-color: var(--accent-ink); }
+.cta-box .btn:hover { filter: brightness(0.94); transform: translateY(-1px); }
+.cta-box :focus-visible { outline-color: var(--accent-ink); }
+footer { border-top: 1px solid var(--line); background: var(--surface); padding-block: 36px 24px; font-size: 0.9rem; color: var(--muted); }
+.foot-grid { display: grid; grid-template-columns: minmax(0, 2fr) repeat(2, minmax(0, 1fr)); gap: 28px; }
+@media (max-width: 700px) { .foot-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } .foot-grid > :first-child { grid-column: 1 / -1; } }
+footer h4 { margin-bottom: 10px; font: 500 0.72rem/1.2 var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); }
+footer li + li { margin-top: 6px; }
+footer a { text-decoration: none; }
+footer a:hover { color: var(--accent); }
+.foot-brand { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font: 700 1.05rem var(--font-display); color: var(--ink); }
+.foot-brand svg { width: 24px; height: 24px; color: var(--accent); }
+.foot-note { margin-top: 28px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 0.82rem; }
+
+/* Tools: cleaner */
+.lab { margin-top: 32px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; align-items: start; }
+@media (max-width: 860px) { .lab { grid-template-columns: minmax(0, 1fr); } }
+.card { min-width: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+.card-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px 14px; border-bottom: 1px solid var(--line); font: 500 0.7rem/1.2 var(--font-mono); letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted); }
+.card-head b { color: var(--ink); font-weight: 500; }
+textarea.paste { display: block; width: 100%; min-height: 250px; padding: 14px; border: 0; background: var(--surface); color: var(--ink); font: 400 0.8rem/1.7 var(--font-mono); resize: vertical; tab-size: 4; white-space: pre; overflow: auto; }
+textarea.paste:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.card-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 12px 14px; border-top: 1px solid var(--line); }
+.status { font-size: 0.85rem; color: var(--accent); min-height: 1.4em; }
+.out-scroll { max-height: 330px; overflow: auto; }
+.result thead th { position: sticky; top: 0; z-index: 1; text-align: left; background: var(--bg); }
+.empty { padding: 28px 16px; color: var(--muted); font-size: 0.92rem; }
+@keyframes rowin { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.row-in { animation: rowin 0.35s ease var(--i, 0ms) backwards; }
+.fileup input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.fileup input:focus-visible + label { outline: 2px solid var(--accent); outline-offset: 3px; }
+.stats { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+.stat { flex: 1 1 110px; min-width: 0; padding: 10px 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); transition: transform 0.2s, border-color 0.2s; }
+.stat:hover { transform: translateY(-2px); border-color: var(--accent); }
+.stat b { display: block; font: 700 1.4rem/1.1 var(--font-display); font-variant-numeric: tabular-nums; }
+.stat span { font-size: 0.75rem; color: var(--muted); }
+.stat.good b { color: var(--accent); }
+.stat.warn b { color: var(--warn); }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 14px; font-size: 0.82rem; color: var(--muted); }
+.legend i { display: inline-block; width: 12px; height: 12px; margin-right: 6px; vertical-align: -1px; border-radius: 3px; background: var(--accent-soft); border: 1px solid var(--accent); }
+.legend i.w { background: var(--warn-bg); border-color: var(--warn); }
+.issues { padding: 12px 14px; border-top: 1px solid var(--line); font-size: 0.82rem; color: var(--warn); }
+.issues li + li { margin-top: 2px; }
+details.more { margin-top: 20px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+details.more summary { display: flex; justify-content: space-between; gap: 12px; padding: 14px 16px; font-weight: 600; cursor: pointer; list-style: none; }
+details.more summary::-webkit-details-marker { display: none; }
+details.more summary::after { content: "+"; font: 400 1.3rem/1 var(--font-mono); color: var(--accent); }
+details.more[open] summary::after { content: "\2212"; }
+details.more pre { margin: 0; padding: 4px 16px 16px; overflow-x: auto; font: 400 0.8rem/1.7 var(--font-mono); }
+details.more .c { color: var(--muted); }
+details.more .k { color: var(--accent); }
+
+/* Tools: estimator */
+.tool-block { margin-top: clamp(40px, 7vw, 72px); padding-top: clamp(32px, 5vw, 48px); border-top: 1px solid var(--line); }
+.est { margin-top: 28px; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(20px, 4vw, 48px); align-items: start; }
+@media (max-width: 860px) { .est { grid-template-columns: minmax(0, 1fr); } }
+.controls { display: grid; gap: 22px; min-width: 0; }
+fieldset { border: 0; padding: 0; min-width: 0; }
+legend, .lab-label { display: block; padding: 0; margin-bottom: 10px; font: 500 0.72rem/1.2 var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.choices { display: flex; flex-wrap: wrap; gap: 8px; }
+.choice { position: relative; }
+.choice input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+.choice span { display: block; padding: 10px 14px; border: 1.5px solid var(--line); border-radius: 8px; background: var(--surface); font-weight: 500; transition: border-color 0.15s, background 0.15s, color 0.15s, transform 0.15s; }
+.choice:hover span { border-color: var(--accent); transform: translateY(-1px); }
+.choice input:checked + span { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.choice input:focus-visible + span { outline: 2px solid var(--accent); outline-offset: 3px; }
+.field select, .field input[type="number"] { width: 100%; padding: 11px 12px; border: 1.5px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--ink); font: inherit; }
+.field select:hover, .field input[type="number"]:hover { border-color: var(--accent); }
+.check { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+.check input { width: 18px; height: 18px; accent-color: var(--accent); }
+.quote { min-width: 0; display: flex; flex-direction: column; gap: 14px; padding: clamp(18px, 3vw, 28px); background: var(--surface); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow); }
+.price-big { font: 800 clamp(2rem, 6vw, 3rem)/1.05 var(--font-display); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.price-big .cur { color: var(--accent); }
+.price-big .to { margin-inline: 6px; font: 500 1rem/1 var(--font-mono); letter-spacing: 0; color: var(--muted); }
+.price-note { font-size: 0.88rem; color: var(--muted); }
+textarea.msg { width: 100%; min-height: 150px; padding: 12px; border: 1.5px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--ink); font: 400 0.82rem/1.6 var(--font-mono); resize: vertical; }
+.row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+
+/* Course */
+.facts { min-width: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow); overflow: hidden; }
+.facts .frow { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 12px; padding: 12px 16px; border-top: 1px solid var(--line); }
+.facts .frow:first-child { border-top: 0; }
+.facts dt { font: 500 0.72rem/1.7 var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.facts dd { font-weight: 500; }
+.facts .frow.hl { background: var(--accent-soft); }
+.facts .frow.hl dd { font: 700 1.3rem/1.2 var(--font-display); color: var(--accent); }
+.outcomes { margin-top: 32px; display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; }
+.outcome { min-width: 0; padding: 20px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; transition: transform 0.25s, border-color 0.25s; }
+.outcome:hover { transform: translateY(-4px); border-color: var(--accent); }
+.outcome h3 { font-size: 1.05rem; line-height: 1.25; }
+.outcome p { margin-top: 8px; font-size: 0.95rem; color: var(--muted); }
+.modules { margin-top: 28px; border-top: 1px solid var(--line); counter-reset: mod; }
+.module { border-bottom: 1px solid var(--line); counter-increment: mod; }
+.module summary { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 16px; align-items: center; padding: 18px 0; cursor: pointer; list-style: none; transition: color 0.15s; }
+.module summary:hover { color: var(--accent); }
+.module summary::-webkit-details-marker { display: none; }
+.module summary::before { content: counter(mod, decimal-leading-zero); font: 500 0.85rem/1 var(--font-mono); color: var(--accent); }
+.module summary::after { content: "+"; font: 400 1.4rem/1 var(--font-mono); color: var(--accent); }
+.module[open] summary::after { content: "\2212"; }
+.module summary h3 { font-size: 1.1rem; line-height: 1.3; }
+.module-body { padding: 0 0 20px 44px; max-width: 70ch; }
+.module-body ul { display: grid; gap: 6px; }
+.module-body li { position: relative; padding-left: 22px; }
+.module-body li::before { content: ""; position: absolute; left: 2px; top: 0.65em; width: 8px; height: 2px; background: var(--accent); }
+.module-body .outcome-line { margin-top: 12px; font-size: 0.92rem; color: var(--muted); }
+.module-body .outcome-line b { color: var(--ink); font-weight: 600; }
+@media (max-width: 520px) { .module-body { padding-left: 0; } }
+.projects { margin-top: 28px; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+.proj { min-width: 0; display: flex; flex-direction: column; gap: 10px; padding: 20px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; }
+.proj h3 { font-size: 1.1rem; line-height: 1.25; }
+.proj p { color: var(--muted); font-size: 0.95rem; }
+.proj code { margin-top: auto; font: 400 0.78rem/1.5 var(--font-mono); color: var(--accent); overflow-wrap: anywhere; }
+.fit { margin-top: 28px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+@media (max-width: 760px) { .fit { grid-template-columns: minmax(0, 1fr); } }
+.fit > div { min-width: 0; padding: 22px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; }
+.fit h3 { font-size: 1.1rem; margin-bottom: 12px; }
+.ticks li { position: relative; padding: 10px 0 10px 28px; border-top: 1px solid var(--line); transition: padding-left 0.2s, color 0.2s; }
+.ticks li:first-child { border-top: 0; }
+.ticks li::before { content: ""; position: absolute; left: 4px; top: 1.1em; width: 10px; height: 6px; border-left: 2px solid var(--accent); border-bottom: 2px solid var(--accent); transform: rotate(-45deg); }
+.ticks.no li::before { width: 10px; height: 10px; top: 1.05em; border: 0; background: linear-gradient(45deg, transparent 44%, var(--warn) 44% 56%, transparent 56%), linear-gradient(-45deg, transparent 44%, var(--warn) 44% 56%, transparent 56%); transform: none; }
+.ticks li:hover { padding-left: 34px; color: var(--accent); }
+.ticks.no li:hover { color: var(--warn); }
+.ticks.small li { padding-block: 6px; font-size: 0.9rem; }
+.ticks.small li::before { top: 0.85em; }
+.promise { margin-top: 28px; padding: clamp(20px, 3vw, 32px); background: var(--accent-soft); border-radius: 12px; }
+.promise h2 { font-size: clamp(1.3rem, 3vw, 1.7rem); }
+.promise p { margin-top: 12px; max-width: 64ch; }
+.promise p + p { margin-top: 10px; }
+
+/* Products */
+.callout { margin-top: 24px; padding: 16px 18px; max-width: 70ch; background: var(--warn-bg); color: var(--warn); border-radius: 10px; font-size: 0.93rem; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+.chip { padding: 8px 14px; border: 1.5px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--ink); font: 500 0.88rem/1.2 var(--font-body); cursor: pointer; transition: border-color 0.15s, background 0.15s, color 0.15s; }
+.chip:hover { border-color: var(--accent); }
+.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.pgrid { margin-top: 24px; display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 18px; }
+.pcard { min-width: 0; display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s; }
+.pcard:hover { transform: translateY(-5px); border-color: var(--accent); box-shadow: var(--shadow); }
+.cover { position: relative; aspect-ratio: 16 / 8; display: grid; place-items: center; background-color: var(--accent-soft); background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size: 24px 24px; border-bottom: 1px solid var(--line); overflow: hidden; }
+.cover .glyph { padding: 4px 14px; background: var(--surface); border: 1.5px solid var(--accent); border-radius: 8px; font: 800 1.9rem/1.2 var(--font-display); letter-spacing: -0.02em; color: var(--accent); transition: transform 0.3s; }
+.pcard:hover .cover .glyph { transform: scale(1.08) rotate(-2deg); }
+.cover .covername { position: absolute; left: 12px; bottom: 10px; font: 500 0.66rem/1.2 var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.cover[data-t="template"] { background-color: var(--warn-bg); }
+.cover[data-t="template"] .glyph { border-color: var(--warn); color: var(--warn); }
+.cover[data-t="prompts"] { background-color: var(--bg); }
+.cover[data-t="bundle"] { background-color: var(--accent); }
+.cover[data-t="bundle"] .covername { color: var(--accent-ink); }
+.pbody { flex: 1; display: flex; flex-direction: column; gap: 10px; padding: 18px; }
+.prow { display: flex; flex-wrap: wrap; gap: 6px; }
+.pbody h3 { font-size: 1.15rem; line-height: 1.25; }
+.blurb { font-size: 0.93rem; color: var(--muted); }
+.inside { border-top: 1px solid var(--line); }
+.inside summary { display: flex; justify-content: space-between; padding: 10px 0; font-weight: 600; font-size: 0.92rem; cursor: pointer; list-style: none; }
+.inside summary::-webkit-details-marker { display: none; }
+.inside summary::after { content: "+"; font: 400 1.2rem/1 var(--font-mono); color: var(--accent); }
+.inside[open] summary::after { content: "\2212"; }
+.forwho { margin-top: 6px; font-size: 0.85rem; color: var(--muted); }
+.pfoot { margin-top: auto; display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; padding-top: 12px; border-top: 1px solid var(--line); }
+.pprice b { display: block; font: 700 1.5rem/1.1 var(--font-display); font-variant-numeric: tabular-nums; }
+.pprice small { font-size: 0.75rem; color: var(--muted); }
+.pnote { font-size: 0.78rem; color: var(--muted); }
+.buy-steps { margin-top: 28px; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; counter-reset: bs; }
+.buy-steps li { min-width: 0; padding-top: 14px; border-top: 2px solid var(--ink); counter-increment: bs; }
+.buy-steps li::before { content: "Step " counter(bs); display: block; margin-bottom: 6px; font: 500 0.72rem/1 var(--font-mono); letter-spacing: 0.09em; text-transform: uppercase; color: var(--accent); }
+.buy-steps h3 { font-size: 1.05rem; }
+.buy-steps p { margin-top: 4px; font-size: 0.93rem; color: var(--muted); }
+
+/* Contact */
+.contact { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(24px, 5vw, 56px); align-items: start; }
+.contact > * { min-width: 0; }
+@media (max-width: 860px) { .contact { grid-template-columns: minmax(0, 1fr); } }
+.channels { margin-top: 24px; border-top: 1px solid var(--line); }
+.channels li { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.channels b { font-weight: 600; }
+.channels span, .channels a { color: var(--muted); overflow-wrap: anywhere; }
+.channels a:hover { color: var(--accent); }
+.composer { display: grid; gap: 16px; padding: clamp(18px, 3vw, 28px); background: var(--surface); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow); }
+.fld { display: grid; gap: 6px; min-width: 0; }
+.fld label { font: 500 0.72rem/1.2 var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.fld input, .fld select, .fld textarea { width: 100%; padding: 11px 12px; border: 1.5px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--ink); font: inherit; }
+.fld input:hover, .fld select:hover, .fld textarea:hover { border-color: var(--accent); }
+.fld textarea { min-height: 150px; resize: vertical; line-height: 1.55; }
+.fld small { font-size: 0.8rem; color: var(--muted); }
+.two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 560px) { .two { grid-template-columns: minmax(0, 1fr); } }
+.send-row { display: flex; flex-wrap: wrap; gap: 10px; }
+.err { font-size: 0.88rem; color: var(--warn); }
+.err:empty, .composer .status:empty { display: none; }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+
+/* Toast */
+.toast { position: fixed; left: 50%; bottom: calc(20px + env(safe-area-inset-bottom, 0px)); z-index: 100; max-width: calc(100vw - 32px); padding: 12px 18px; background: var(--ink); color: var(--bg); border-radius: 8px; font-size: 0.92rem; box-shadow: var(--shadow); opacity: 0; transform: translate(-50%, 20px); pointer-events: none; transition: opacity 0.25s, transform 0.25s; }
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  html.js .reveal:not(.in) { opacity: 1; transform: none; }
+}
+
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="top" id="top">
+  <div class="wrap bar">
+    <a class="brand" href="#home" aria-label="The AI Skills School, home">
+      <svg viewBox="0 0 28 28" aria-hidden="true">
+        <rect x="2" y="2" width="7" height="7" fill="none" stroke="currentColor" stroke-width="1.6"/>
+        <rect x="10.5" y="2" width="7" height="7" fill="none" stroke="currentColor" stroke-width="1.6"/>
+        <rect x="19" y="2" width="7" height="7" fill="none" stroke="currentColor" stroke-width="1.6"/>
+        <rect x="2" y="10.5" width="7" height="7" fill="none" stroke="currentColor" stroke-width="1.6"/>
+        <rect x="10.5" y="10.5" width="7" height="7" fill="currentColor" stroke="currentColor" stroke-width="1.6"/>
+        <rect x="19" y="10.5" width="7" height="7" fill="none" stroke="currentColor" stroke-width="1.6"/>
+        <rect x="2" y="19" width="7" height="7" fill="none" stroke="currentColor" stroke-width="1.6"/>
+        <rect x="10.5" y="19" width="7" height="7" fill="none" stroke="currentColor" stroke-width="1.6"/>
+        <rect x="19" y="19" width="7" height="7" fill="none" stroke="currentColor" stroke-width="1.6"/>
+      </svg>
+      <span>The AI Skills School</span>
+    </a>
+    <nav class="nav" id="nav" aria-label="Main">
+      <a class="link" href="#services">Services</a>
+      <a class="link" href="#tools" data-view-link="tools">Free tools</a>
+      <a class="link" href="#course" data-view-link="course">Course</a>
+      <a class="link" href="#products" data-view-link="products">Products</a>
+      <a class="link" href="#faq">FAQ</a>
+    </nav>
+    <div class="actions">
+      <button class="icon-btn" id="theme" type="button" aria-label="Switch between light and dark mode">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 3.5a8.5 8.5 0 0 1 0 17z" fill="currentColor"/></svg>
+      </button>
+      <a class="btn primary small" href="#contact" data-view-link="contact" data-open-contact="project">Message me</a>
+      <button class="icon-btn menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="nav" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="progress" aria-hidden="true"></div>
+</header>
+
+<noscript><p class="wrap" style="padding-block:16px">This site works best with JavaScript turned on. You can always message me on Instagram: @the_ai_skills_school</p></noscript>
+
+<main id="main" tabindex="-1">
+
+  <!-- ===================== HOME ===================== -->
+  <div data-view="home">
+    <div class="hero" id="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <p class="eyebrow rise" style="--d:0ms">Python + Excel automation</p>
+          <h1 class="rise" style="--d:90ms">Excel work that takes hours, <mark>done in minutes.</mark></h1>
+          <p class="lead rise" style="--d:180ms">I clean, combine and summarise messy spreadsheets with Python, so you stop fixing the same file by hand every month.</p>
+          <p class="audience rise" style="--d:260ms">Built for <span class="sr-only">shops, clinics, coaching centres, tuition classes and freelancers</span><span class="rot" id="rot" aria-hidden="true">shops</span></p>
+          <div class="cta-row rise" style="--d:340ms">
+            <a class="btn primary" href="#contact" data-open-contact="project">Message me <span class="arr" aria-hidden="true">&rarr;</span></a>
+            <a class="btn ghost" href="#tools">Try the free cleaner</a>
+          </div>
+          <p class="who rise" style="--d:420ms">I'm a student building my portfolio, so early projects are priced low.</p>
+        </div>
+
+        <div class="sheet rise" style="--d:260ms" id="sheet" role="group" aria-label="Messy Excel data before and after cleaning">
+          <div class="sheet-head"><b>sales.xlsx</b><span class="tag bad">Before &middot; 5 rows</span></div>
+          <div class="scroll">
+            <table class="cells">
+              <caption class="sr-only">Messy sales data, dummy example</caption>
+              <thead><tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th></tr></thead>
+              <tbody>
+                <tr class="hdr"><th>1</th><td>Name</td><td>Phone</td><td>Date</td><td>Amount</td></tr>
+                <tr><th>2</th><td class="bad" tabindex="0" data-fix="Name: trailing space and lowercase. Fixed with .str.strip().str.title()">ramesh kumar&nbsp;</td><td class="bad" tabindex="0" data-fix="Phone: stray space. Keep digits only, last 10, with .str.replace(r'\D', '')">98765 43210</td><td class="bad" tabindex="0" data-fix="Date: one of four different formats. Converted with pd.to_datetime(..., dayfirst=True)">3/10/26</td><td class="bad" tabindex="0" data-fix="Amount: has a rupee sign and a comma. Converted to a number with pd.to_numeric()">&#8377;1,200</td></tr>
+                <tr class="dup" tabindex="0" data-fix="Duplicate: same name and phone as row 2. Removed with drop_duplicates()"><th>3</th><td>Ramesh Kumar</td><td>9876543210</td><td class="bad">03-Oct-2026</td><td>1200</td></tr>
+                <tr><th>4</th><td class="bad" tabindex="0" data-fix="Name: all capitals. Fixed with .str.title()">SUNITA DEVI</td><td class="bad" tabindex="0" data-fix="Phone: country code and spaces. Keep the last 10 digits only">+91 98123 45678</td><td class="bad" tabindex="0" data-fix="Date: written with a month name. Converted to one format">04 Oct 2026</td><td>850</td></tr>
+                <tr><th>5</th><td>Amit Verma</td><td>9811122233</td><td>05/10/2026</td><td class="bad" tabindex="0" data-fix="Amount: empty. This cannot be guessed, so it is listed for you to check">(empty)</td></tr>
+                <tr class="dup" tabindex="0" data-fix="Duplicate: same person as row 4 once the name and phone are cleaned. Removed"><th>6</th><td class="bad">sunita devi</td><td>9812345678</td><td>04/10/2026</td><td>850</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="arrow">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v10M3.5 8.5 8 13l4.5-4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>pandas, one short script</span>
+          </div>
+          <div class="sheet-head"><b>sales_clean.xlsx</b><span class="tag">After &middot; 3 rows</span></div>
+          <div class="scroll">
+            <table class="cells">
+              <caption class="sr-only">Cleaned sales data, dummy example</caption>
+              <thead><tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th></tr></thead>
+              <tbody>
+                <tr class="hdr"><th>1</th><td>Name</td><td>Phone</td><td>Date</td><td>Amount</td></tr>
+                <tr><th>2</th><td>Ramesh Kumar</td><td>9876543210</td><td>03-Oct-2026</td><td>1200</td></tr>
+                <tr><th>3</th><td>Sunita Devi</td><td>9812345678</td><td>04-Oct-2026</td><td>850</td></tr>
+                <tr><th>4</th><td>Amit Verma</td><td>9811122233</td><td>05-Oct-2026</td><td class="bad">(empty)</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="fixline" id="fixline" aria-live="polite">Hover over or tap a yellow cell to see how it gets fixed.</p>
+          <p class="sheet-note">Dummy example data, not a client's file.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="trust">
+      <div class="wrap">
+        <ul>
+          <li>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div><b>Python and pandas</b><span>Scripts you can run again every month.</span></div>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 7.5h8M8 11h8M10 7.5c3.5 0 4.5 2 4.5 3.5S13.5 14.5 10 14.5L15 19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div><b>Priced in rupees</b><span>The price is agreed before any work starts.</span></div>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+            <div><b>Hinglish and English</b><span>Explained in the language you are comfortable with.</span></div>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 11V8a4 4 0 0 1 8 0v3" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+            <div><b>Your data stays private</b><span>Your file is used only for your job.</span></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <section id="services" aria-labelledby="services-h">
+      <div class="wrap">
+        <h2 id="services-h">Three jobs I take on right now</h2>
+        <p class="sec-lead">Every job starts with a small sample file. After I see it, I confirm the price and the time it will take.</p>
+        <div class="svc-list">
+          <article class="svc">
+            <h3>Data cleaning</h3>
+            <div class="price">from &#8377;500<small>early-client price</small></div>
+            <p>Remove duplicate entries, fix name and phone formats, and find the empty cells.</p>
+            <code>drop_duplicates() &middot; str.strip() &middot; to_datetime()</code>
+          </article>
+          <article class="svc">
+            <h3>Merging files</h3>
+            <div class="price">from &#8377;500<small>early-client price</small></div>
+            <p>Combine 12 monthly Excel files, or sheets from different branches, into one clean file.</p>
+            <code>concat() &middot; merge()</code>
+          </article>
+          <article class="svc">
+            <h3>Auto report</h3>
+            <div class="price">from &#8377;1,000<small>early-client price</small></div>
+            <p>A summary of sales or fees by product or by month, delivered as a ready Excel file.</p>
+            <code>groupby() &middot; to_excel()</code>
+          </article>
+        </div>
+        <div class="cta-row">
+          <a class="btn primary" href="#contact" data-open-contact="project">Start with a sample file <span class="arr" aria-hidden="true">&rarr;</span></a>
+          <a class="btn ghost" href="#tools">Get a ballpark price</a>
+        </div>
+        <p class="fine">Early-client pricing applies to my first 5 projects. If you like the result, a short testimonial is all I ask in return.</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="more-h">
+      <div class="wrap">
+        <h2 id="more-h">Try it, learn it, or grab a template</h2>
+        <p class="sec-lead">You do not have to hire me to get value from this site.</p>
+        <div class="tiles">
+          <a class="tile" href="#tools">
+            <span class="pill live">Free</span>
+            <h3>Free data cleaner and estimator</h3>
+            <p>Paste a messy spreadsheet and see it cleaned in your browser, or get a ballpark price for your own project.</p>
+            <span class="go">Open the tools <span class="arr" aria-hidden="true">&rarr;</span></span>
+          </a>
+          <a class="tile" href="#course">
+            <span class="pill soon">First batch opening soon</span>
+            <h3 data-bind="course-name">Python for Excel Automation</h3>
+            <p>A beginner-friendly course in Python and pandas for everyday spreadsheet work. Join the waitlist for free.</p>
+            <span class="go">See the course <span class="arr" aria-hidden="true">&rarr;</span></span>
+          </a>
+          <a class="tile" href="#products">
+            <span class="pill soon">In preparation</span>
+            <h3>Digital products</h3>
+            <p>Excel templates, a ready cleaning script and a prompt pack. Ask to be notified when each one is ready.</p>
+            <span class="go">Browse products <span class="arr" aria-hidden="true">&rarr;</span></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="how-h">
+      <div class="wrap">
+        <h2 id="how-h">How a job works</h2>
+        <ol class="steps">
+          <li>
+            <h3>Send a sample file</h3>
+            <p>10 to 20 rows is enough. Remove or change real customer names and phone numbers first.</p>
+          </li>
+          <li>
+            <h3>Agree on price and time</h3>
+            <p>After seeing the sample, I tell you what will be done, what it costs and how many days it takes.</p>
+          </li>
+          <li>
+            <h3>Build and check</h3>
+            <p>I test the script on dummy data first, then run it on your file. You review the result.</p>
+          </li>
+          <li>
+            <h3>Pay by UPI</h3>
+            <p>If the result looks right, you pay by UPI. If something is wrong, I fix it.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="about" aria-labelledby="about-h">
+      <div class="wrap">
+        <h2 id="about-h">Hi, I'm a student learning in public</h2>
+        <p>I'm learning Python and pandas and taking on small spreadsheet jobs while I study. That is why prices are low, and why I tell you plainly what I can and can't do.</p>
+        <p>There are no made-up testimonials or income claims on this site. Real client results will go here once I have them.</p>
+      </div>
+    </section>
+
+    <section id="faq" aria-labelledby="faq-h">
+      <div class="wrap">
+        <h2 id="faq-h">Frequently asked questions</h2>
+        <div class="faq">
+          <details>
+            <summary>Is my data safe?</summary>
+            <p>Your file is used only for your job and is not shared with anyone. Customer personal details are not put into any AI tool without your permission.</p>
+          </details>
+          <details>
+            <summary>How long does a job take?</summary>
+            <p>A small file usually takes 1 to 2 days. After I see your sample, I give you an exact time.</p>
+          </details>
+          <details>
+            <summary>How do I pay?</summary>
+            <p>By UPI. The price and time are confirmed before any work starts.</p>
+          </details>
+          <details>
+            <summary>What if the result has a mistake?</summary>
+            <p>You review the result. If you find a mistake, I fix it.</p>
+          </details>
+          <details>
+            <summary>Can I use the free cleaner on real customer data?</summary>
+            <p>It runs inside your browser and sends nothing anywhere. Even so, remove personal details when you can, and treat it as a demo of the method.</p>
+          </details>
+          <details>
+            <summary>I only want to learn, not hire you.</summary>
+            <p>Take a look at the course page and join the waitlist. The Instagram page also shares free tips.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <div class="cta">
+      <div class="wrap">
+        <div class="cta-box">
+          <div>
+            <h2>Got a messy spreadsheet, or want to learn?</h2>
+            <p>Send me a message. I'm on Instagram as <strong data-ig-handle>@the_ai_skills_school</strong>.</p>
+          </div>
+          <a class="btn" href="#contact" data-open-contact="project">Message me <span class="arr" aria-hidden="true">&rarr;</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== FREE TOOLS ===================== -->
+  <div data-view="tools">
+    <div class="page-hero">
+      <div class="wrap">
+        <p class="eyebrow">Free tools</p>
+        <h1>Clean a messy sheet. Price your project.</h1>
+        <p class="lead">Two small tools that run entirely in your browser. Nothing you paste is uploaded or stored.</p>
+      </div>
+    </div>
+
+    <section id="demo" aria-labelledby="demo-h">
+      <div class="wrap">
+        <h2 id="demo-h">Free data cleaner</h2>
+        <p class="sec-lead">Paste rows copied from Excel, or a CSV. The same clean-up steps as my Python script run right here. It recognises columns named like Name, Phone, Date and Amount.</p>
+        <div class="lab">
+          <div class="card">
+            <div class="card-head"><b>Messy data in</b><span>CSV or pasted from Excel</span></div>
+            <label class="sr-only" for="in">Paste messy data here</label>
+            <textarea class="paste" id="in" spellcheck="false" maxlength="60000"></textarea>
+            <div class="card-foot">
+              <button class="btn primary small" id="run" type="button">Clean data</button>
+              <span class="fileup"><input type="file" id="file" accept=".csv,.tsv,.txt,text/csv,text/plain"><label class="btn ghost small" for="file">Upload CSV</label></span>
+              <button class="btn ghost small" id="reset" type="button">Reset sample</button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-head"><b>Clean data out</b><span id="rowcap"></span></div>
+            <div class="out-scroll scroll" id="out"></div>
+            <ul class="issues" id="issues" hidden></ul>
+            <div class="card-foot">
+              <button class="btn ghost small" id="copycsv" type="button">Copy clean CSV</button>
+              <button class="btn ghost small" id="dlcsv" type="button">Download CSV</button>
+              <span class="status" id="demo-status" aria-live="polite"></span>
+            </div>
+          </div>
+        </div>
+        <div class="stats" id="stats">
+          <div class="stat"><b id="s-in">0</b><span>Rows in</span></div>
+          <div class="stat good"><b id="s-out">0</b><span>Rows out</span></div>
+          <div class="stat good"><b id="s-dupes">0</b><span>Duplicates removed</span></div>
+          <div class="stat good"><b id="s-fixed">0</b><span>Cells fixed</span></div>
+          <div class="stat warn"><b id="s-flag">0</b><span>Need your attention</span></div>
+        </div>
+        <p class="legend"><span><i></i>Green: fixed for you</span><span><i class="w"></i>Yellow: needs a human check</span></p>
+        <details class="more">
+          <summary>Show the pandas script behind this</summary>
+<pre><code><span class="k">import</span> pandas <span class="k">as</span> pd
+
+df = pd.read_excel(<span class="c">"sales.xlsx"</span>)
+df[<span class="c">"Name"</span>] = df[<span class="c">"Name"</span>].str.strip().str.title()
+df[<span class="c">"Phone"</span>] = (df[<span class="c">"Phone"</span>].astype(str)
+    .str.replace(<span class="c">r"\D"</span>, <span class="c">""</span>, regex=<span class="k">True</span>).str[-10:])
+df[<span class="c">"Date"</span>] = pd.to_datetime(df[<span class="c">"Date"</span>], dayfirst=<span class="k">True</span>,
+    format=<span class="c">"mixed"</span>).dt.strftime(<span class="c">"%d-%b-%Y"</span>)
+df[<span class="c">"Amount"</span>] = pd.to_numeric(df[<span class="c">"Amount"</span>].astype(str)
+    .str.extract(<span class="c">r"(\d[\d,]*\.?\d*)"</span>)[0]
+    .str.replace(<span class="c">","</span>, <span class="c">""</span>, regex=<span class="k">False</span>), errors=<span class="c">"coerce"</span>)
+df = df.drop_duplicates(subset=[<span class="c">"Name"</span>, <span class="c">"Phone"</span>])
+
+df.to_excel(<span class="c">"sales_clean.xlsx"</span>, index=<span class="k">False</span>)
+<span class="k">print</span>(df[df[<span class="c">"Amount"</span>].isna()])  <span class="c"># rows with a missing amount</span></code></pre>
+        </details>
+        <p class="fine">This demo mirrors the logic of the script above. For a real job I run the script in pandas on your file, and I check it on dummy data first. For an Excel file, copy the cells and paste them, or save the sheet as CSV first.</p>
+
+        <div class="tool-block" id="estimate">
+          <h2>Estimate your project</h2>
+          <p class="sec-lead">Pick a job and a size to see a ballpark price. Then send it to me as a message.</p>
+          <div class="est">
+            <div class="controls">
+              <fieldset>
+                <legend>What do you need?</legend>
+                <div class="choices">
+                  <label class="choice"><input type="radio" name="svc" value="clean" checked><span>Data cleaning</span></label>
+                  <label class="choice"><input type="radio" name="svc" value="merge"><span>Merging files</span></label>
+                  <label class="choice"><input type="radio" name="svc" value="report"><span>Auto report</span></label>
+                </div>
+              </fieldset>
+              <div class="field">
+                <label class="lab-label" for="size">How big is the data?</label>
+                <select id="size">
+                  <option value="0">Up to 500 rows</option>
+                  <option value="1">500 to 5,000 rows</option>
+                  <option value="2">5,000 to 50,000 rows</option>
+                  <option value="3">More than 50,000 rows</option>
+                </select>
+              </div>
+              <div class="field" id="files-wrap" hidden>
+                <label class="lab-label" for="files">How many files?</label>
+                <input type="number" id="files" min="2" max="60" value="12" inputmode="numeric">
+              </div>
+              <label class="check"><input type="checkbox" id="rush"><span>Needed within 24 hours (+30%)</span></label>
+            </div>
+
+            <div class="quote">
+              <div>
+                <p class="lab-label">Ballpark price</p>
+                <p class="price-big">
+                  <span id="p-range"><span class="cur">&#8377;</span><span id="p-lo">500</span><span class="to">to</span><span class="cur">&#8377;</span><span id="p-hi">700</span></span>
+                  <span id="p-custom" hidden>Custom quote</span>
+                </p>
+                <p class="price-note" id="price-note">Early-client pricing. The final price is confirmed after I see a sample file.</p>
+              </div>
+              <div>
+                <label class="lab-label" for="est-msg">Your message</label>
+                <textarea class="msg" id="est-msg" readonly></textarea>
+              </div>
+              <div class="row">
+                <button class="btn primary small" id="est-send" type="button">Send this to me <span class="arr" aria-hidden="true">&rarr;</span></button>
+                <button class="btn ghost small" id="est-copy" type="button">Copy message</button>
+              </div>
+              <p class="status" id="est-status" aria-live="polite"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ===================== COURSE ===================== -->
+  <div data-view="course">
+    <div class="page-hero split">
+      <div class="wrap">
+        <div>
+          <p class="eyebrow">Course &middot; first batch opening soon</p>
+          <h1 data-bind="course-name">Python for Excel Automation</h1>
+          <p class="lead">A beginner-friendly course that teaches you to clean, merge and report on spreadsheet data with Python and pandas. You also learn to use an AI assistant safely, and how to turn the skill into a small paid service.</p>
+          <div class="cta-row">
+            <a class="btn primary" href="#contact" data-open-contact="course">Join the waitlist <span class="arr" aria-hidden="true">&rarr;</span></a>
+            <a class="btn ghost" href="#syllabus">See what you will learn</a>
+          </div>
+          <p class="who">Joining the waitlist is free. You pay nothing until the batch opens.</p>
+        </div>
+        <dl class="facts">
+          <div class="frow"><dt>Level</dt><dd>Beginner. No coding needed.</dd></div>
+          <div class="frow"><dt>Format</dt><dd>Live sessions on screen-share, recorded for replay</dd></div>
+          <div class="frow"><dt>Language</dt><dd>Hinglish and English</dd></div>
+          <div class="frow"><dt>Tools</dt><dd>Python, pandas and Google Colab (free, runs in a browser)</dd></div>
+          <div class="frow"><dt>Duration</dt><dd data-bind="course-duration">4 weeks (planned)</dd></div>
+          <div class="frow hl"><dt>Founding price</dt><dd>&#8377;<span data-bind="course-price">1,299</span> <span class="price-note" style="font:500 .8rem var(--font-body)">one-time</span></dd></div>
+        </dl>
+      </div>
+    </div>
+
+    <section aria-labelledby="out-h">
+      <div class="wrap">
+        <h2 id="out-h">What you will be able to do</h2>
+        <div class="outcomes">
+          <div class="outcome"><h3>Clean a messy file in minutes</h3><p>Remove duplicates and fix text, phone numbers, dates and amounts with one script.</p></div>
+          <div class="outcome"><h3>Combine many files into one</h3><p>Join monthly files or branch sheets, then check that nothing went missing.</p></div>
+          <div class="outcome"><h3>Build reports that rebuild themselves</h3><p>Summaries by product or by month that you can re-run next month in seconds.</p></div>
+          <div class="outcome"><h3>Use AI to write code, then check it</h3><p>Write clear prompts, read the code, test on dummy data and protect customer details.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="syllabus" aria-labelledby="syl-h">
+      <div class="wrap">
+        <h2 id="syl-h">Syllabus</h2>
+        <p class="sec-lead">Six modules, taught in order. Each one builds on the last. This is the plan so far, and it may change before the first batch.</p>
+        <div class="modules">
+          <details class="module">
+            <summary><h3>Python and pandas basics for spreadsheets</h3></summary>
+            <div class="module-body">
+              <ul>
+                <li>Set up Google Colab in your browser, with nothing to install</li>
+                <li>Read an Excel or CSV file into pandas</li>
+                <li>Rows, columns and data types, explained with spreadsheet examples</li>
+                <li>Filter, sort and select the data you need</li>
+              </ul>
+              <p class="outcome-line"><b>You can then:</b> open any sheet in Python and find what you need.</p>
+            </div>
+          </details>
+          <details class="module">
+            <summary><h3>Cleaning messy data</h3></summary>
+            <div class="module-body">
+              <ul>
+                <li>Remove duplicate rows</li>
+                <li>Fix names, phone numbers, dates and amounts</li>
+                <li>Find and handle missing values</li>
+                <li>Save the clean file back to Excel</li>
+              </ul>
+              <p class="outcome-line"><b>You can then:</b> turn a messy sales file into a clean one with a single script.</p>
+            </div>
+          </details>
+          <details class="module">
+            <summary><h3>Combining files</h3></summary>
+            <div class="module-body">
+              <ul>
+                <li>Stack 12 monthly files into one table with concat</li>
+                <li>Join two tables with merge</li>
+                <li>Check the result for missing or doubled rows</li>
+              </ul>
+              <p class="outcome-line"><b>You can then:</b> bring a year of files together without copy and paste.</p>
+            </div>
+          </details>
+          <details class="module">
+            <summary><h3>Reports that rebuild themselves</h3></summary>
+            <div class="module-body">
+              <ul>
+                <li>Group and total data with groupby</li>
+                <li>Pivot tables in pandas</li>
+                <li>Export a summary to Excel</li>
+                <li>Run the same script next month in seconds</li>
+              </ul>
+              <p class="outcome-line"><b>You can then:</b> deliver a monthly report that builds itself.</p>
+            </div>
+          </details>
+          <details class="module">
+            <summary><h3>Using AI as a coding assistant, safely</h3></summary>
+            <div class="module-body">
+              <ul>
+                <li>Write a clear prompt so the AI understands your file</li>
+                <li>Read the code before you run it</li>
+                <li>Test on dummy data first</li>
+                <li>What never to paste into an AI tool, such as customer details</li>
+              </ul>
+              <p class="outcome-line"><b>You can then:</b> get working code from an AI assistant and know whether to trust it.</p>
+            </div>
+          </details>
+          <details class="module">
+            <summary><h3>Your first client job</h3></summary>
+            <div class="module-body">
+              <ul>
+                <li>Choose a small service you can offer</li>
+                <li>Set a fair starting price in rupees</li>
+                <li>Ask for a sample file, deliver the work and get paid by UPI</li>
+                <li>Build a small portfolio with before and after examples</li>
+              </ul>
+              <p class="outcome-line"><b>You can then:</b> approach your first client with something real to show.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="proj-h">
+      <div class="wrap">
+        <h2 id="proj-h">Three projects you will build</h2>
+        <div class="projects">
+          <div class="proj"><span class="pill">Project 1</span><h3>Clean a messy sales file</h3><p>Duplicates, mixed date formats, rupee signs and blank cells, fixed with one script.</p><code>drop_duplicates &middot; to_datetime &middot; to_numeric</code></div>
+          <div class="proj"><span class="pill">Project 2</span><h3>Merge 12 monthly files</h3><p>Combine a year of sales files into one table and check that nothing went missing.</p><code>concat &middot; merge</code></div>
+          <div class="proj"><span class="pill">Project 3</span><h3>Build a monthly report</h3><p>Total sales by product and by month, exported to Excel and ready to send.</p><code>groupby &middot; pivot_table &middot; to_excel</code></div>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="fit-h">
+      <div class="wrap">
+        <h2 id="fit-h">Is this course for you?</h2>
+        <div class="fit">
+          <div>
+            <h3>It is a good fit if you are</h3>
+            <ul class="ticks">
+              <li>A student or beginner who learns best by doing</li>
+              <li>A freelancer who wants a new spreadsheet service to offer</li>
+              <li>A shop or class owner who wants to understand your own data</li>
+              <li>Ready to practise a little every day</li>
+            </ul>
+          </div>
+          <div>
+            <h3>It is not for you if you want</h3>
+            <ul class="ticks no">
+              <li>Guaranteed income or quick money promises</li>
+              <li>Advanced machine learning. This is a beginner spreadsheet course</li>
+              <li>A course you can finish without practising on your own</li>
+            </ul>
+          </div>
+        </div>
+        <div class="promise">
+          <h2>An honest promise</h2>
+          <p>You will learn a real, useful skill, and you will finish with three small projects you can show. I cannot promise income. What you earn depends on your practice, your portfolio and how you find clients.</p>
+          <p>I will always tell you plainly what the skill can and cannot do.</p>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="inst-h">
+      <div class="wrap about">
+        <h2 id="inst-h">Your instructor</h2>
+        <p>I'm a student learning Python and pandas in public, and I teach what I practise myself. I explain things in simple Hinglish or English, I say so when I don't know something, and the course improves with the questions from every batch.</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="cfaq-h">
+      <div class="wrap">
+        <h2 id="cfaq-h">Course questions</h2>
+        <div class="faq">
+          <details>
+            <summary>Do I need to know coding?</summary>
+            <p>No. We start from the basics of Python and pandas. Curiosity and regular practice matter more than experience.</p>
+          </details>
+          <details>
+            <summary>Do I need a laptop?</summary>
+            <p>A laptop makes it much easier. Google Colab runs in a browser, so a phone can work for practice, but typing code on a phone is slow.</p>
+          </details>
+          <details>
+            <summary>Which language is the course taught in?</summary>
+            <p>Hinglish and English. I switch to whatever makes the idea clearest.</p>
+          </details>
+          <details>
+            <summary>When does the first batch start, and what will it cost?</summary>
+            <p>The start date is not fixed yet. Join the waitlist and I will message you first. The founding price shown on this page is for the first batch.</p>
+          </details>
+          <details>
+            <summary>Will the course guarantee income?</summary>
+            <p>No. The skill helps you offer a service, but income depends on your practice, your portfolio and finding clients.</p>
+          </details>
+          <details>
+            <summary>How do I pay?</summary>
+            <p>By UPI when the batch opens. I will share the details by message. Joining the waitlist costs nothing.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <div class="cta">
+      <div class="wrap">
+        <div class="cta-box">
+          <div>
+            <h2>Be first in line for the first batch</h2>
+            <p>Join the free waitlist and I will message you when it opens.</p>
+          </div>
+          <a class="btn" href="#contact" data-open-contact="course">Join the waitlist <span class="arr" aria-hidden="true">&rarr;</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== PRODUCTS ===================== -->
+  <div data-view="products">
+    <div class="page-hero">
+      <div class="wrap">
+        <p class="eyebrow">Digital products</p>
+        <h1>Templates, scripts and prompts for spreadsheet work.</h1>
+        <p class="lead">Small, practical files you download once and reuse. Made for shop owners, class owners, students and freelancers.</p>
+        <p class="callout" id="products-note">These products are being prepared. Asking to be notified is free. Tell me which one you want and I will message you as soon as it is ready.</p>
+      </div>
+    </div>
+
+    <section aria-labelledby="shop-h">
+      <div class="wrap">
+        <h2 id="shop-h">All products</h2>
+        <div class="chips" id="chips" role="group" aria-label="Filter products"></div>
+        <div class="pgrid" id="pgrid" aria-live="polite"></div>
+
+        <h2 style="margin-top:clamp(40px,7vw,72px)">How buying works</h2>
+        <ol class="buy-steps">
+          <li><h3>Pick a product</h3><p>Open &ldquo;What's inside&rdquo; to see exactly what you get.</p></li>
+          <li><h3>Message me or pay by UPI</h3><p>Products that are ready show a buy button. For the others, ask to be notified.</p></li>
+          <li><h3>Get your download</h3><p>After I confirm your payment, I send you the files as a download link.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section aria-labelledby="pfaq-h">
+      <div class="wrap">
+        <h2 id="pfaq-h">Product questions</h2>
+        <div class="faq">
+          <details>
+            <summary>What do I actually receive?</summary>
+            <p>Digital files only, such as an Excel file, a Python script or a text file of prompts. Nothing is posted to you.</p>
+          </details>
+          <details>
+            <summary>Do I need to know Python?</summary>
+            <p>Only for the script. The Excel templates and the prompt pack work without any coding. The script comes with a Google Colab guide so you can run it in a browser.</p>
+          </details>
+          <details>
+            <summary>Something does not work. What now?</summary>
+            <p>Message me and I will help you fix it.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ===================== CONTACT ===================== -->
+  <div data-view="contact">
+    <div class="page-hero">
+      <div class="wrap">
+        <p class="eyebrow">Contact</p>
+        <h1>Send me a message.</h1>
+        <p class="lead">Tell me what you need, and I will reply. I'm a student, so replies may take a little time.</p>
+      </div>
+    </div>
+
+    <section aria-labelledby="msg-h">
+      <div class="wrap contact">
+        <div>
+          <h2 id="msg-h">Pick how you want to reach me</h2>
+          <p class="sec-lead">Write your message on the right, then send it by the channel you prefer.</p>
+          <ul class="channels" id="channels"></ul>
+        </div>
+
+        <form class="composer" id="composer" novalidate>
+          <div class="two">
+            <div class="fld"><label for="c-name">Your name (optional)</label><input id="c-name" type="text" autocomplete="name" maxlength="60"></div>
+            <div class="fld">
+              <label for="c-topic">What is this about?</label>
+              <select id="c-topic">
+                <option value="project">A spreadsheet project</option>
+                <option value="course">The course waitlist</option>
+                <option value="product">A digital product</option>
+                <option value="other">Something else</option>
+              </select>
+            </div>
+          </div>
+          <div class="fld" id="c-product-wrap" hidden>
+            <label for="c-product">Which product?</label>
+            <select id="c-product"></select>
+          </div>
+          <div class="fld">
+            <label for="c-msg">Your message</label>
+            <textarea id="c-msg" maxlength="1500"></textarea>
+            <small>Edit it however you like before sending.</small>
+          </div>
+          <div class="fld" id="c-reply-wrap" hidden>
+            <label for="c-reply">How can I reach you?</label>
+            <input id="c-reply" type="text" maxlength="80" placeholder="Instagram handle, WhatsApp number or email" autocomplete="off">
+            <small>I need this to reply when you use &ldquo;Send message&rdquo;.</small>
+          </div>
+          <input class="hp" type="text" id="c-bot" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <p class="err" id="c-err" role="alert"></p>
+          <div class="send-row">
+            <button type="submit" class="btn primary" id="send-form" hidden>Send message</button>
+            <a class="btn primary" id="send-ig" href="https://ig.me/m/the_ai_skills_school" target="_blank" rel="noopener">Send on Instagram <span class="arr" aria-hidden="true">&rarr;</span></a>
+            <a class="btn ghost" id="send-wa" href="#" target="_blank" rel="noopener" hidden>Send on WhatsApp</a>
+            <a class="btn ghost" id="send-mail" href="#" hidden>Send by email</a>
+            <button type="button" class="btn ghost" id="copy-msg">Copy message</button>
+          </div>
+          <p class="status" id="c-status" role="status" aria-live="polite"></p>
+          <p class="price-note" id="c-help">Instagram cannot pre-fill a message, so I copy yours for you. Paste it into the chat that opens.</p>
+        </form>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">
+          <svg viewBox="0 0 28 28" aria-hidden="true"><rect x="2" y="2" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"/><rect x="10.5" y="10.5" width="7" height="7" fill="currentColor"/></svg>
+          The AI Skills School
+        </div>
+        <p>Python and Excel automation, plus beginner-friendly lessons. Run by a student and priced for small businesses.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#tools">Free tools</a></li>
+          <li><a href="#course">Course</a></li>
+          <li><a href="#products">Products</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="#contact" data-open-contact="other">Send a message</a></li>
+          <li><a href="https://www.instagram.com/the_ai_skills_school/" data-ig="profile" target="_blank" rel="noopener">Instagram <span data-ig-handle>@the_ai_skills_school</span></a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="foot-note">&copy; 2026 The AI Skills School. Example data on this site is dummy data, not from any client.</p>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="site-config.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  var DEFAULTS = {
+  instagram: 'the_ai_skills_school',
+  whatsapp: '',
+  email: '',
+  upiId: '',
+  upiName: 'The AI Skills School',
+  formKey: '',
+
+  course: {
+    name: 'Python for Excel Automation',
+    price: 1299,
+    duration: '4 weeks (planned)'
+  },
+
+  products: [
+    {
+      id: 'clean-script',
+      type: 'script',
+      typeLabel: 'Python script',
+      name: 'Clean Sales Data Script',
+      price: 199,
+      status: 'soon',
+      buyUrl: '',
+      blurb: 'A ready Python script that removes duplicates and fixes names, phone numbers, dates and amounts in a sales file.',
+      inside: [
+        'The clean_sales.py script with comments on every step',
+        'A messy sample Excel file to practise on',
+        'A setup guide for Google Colab, so nothing needs to be installed',
+        'Notes on how to adapt it to your own column names'
+      ],
+      forWho: 'students and freelancers who want a working script to study and reuse'
+    },
+    {
+      id: 'shop-templates',
+      type: 'template',
+      typeLabel: 'Excel templates',
+      name: 'Excel Templates for Small Shops',
+      price: 149,
+      status: 'soon',
+      buyUrl: '',
+      blurb: 'Simple Excel sheets for daily sales, expenses and stock, with the formulas already set up.',
+      inside: [
+        'Daily sales sheet',
+        'Expense tracker',
+        'Stock list that highlights low stock',
+        'A short guide on how to use all three'
+      ],
+      forWho: 'shop owners who still keep records on paper or in messy files'
+    },
+    {
+      id: 'fee-tracker',
+      type: 'template',
+      typeLabel: 'Excel template',
+      name: 'Fee Tracker for Coaching Classes',
+      price: 149,
+      status: 'soon',
+      buyUrl: '',
+      blurb: 'A monthly fee sheet that shows who has paid, who is due, and highlights late payments.',
+      inside: [
+        'Student list with monthly fee columns',
+        'Paid and due status that updates itself',
+        'Month-wise summary of fees collected',
+        'A short guide on how to use it'
+      ],
+      forWho: 'tuition teachers and small coaching centres'
+    },
+    {
+      id: 'prompt-pack',
+      type: 'prompts',
+      typeLabel: 'Prompt pack',
+      name: 'AI Prompt Pack for Spreadsheet Work',
+      price: 99,
+      status: 'soon',
+      buyUrl: '',
+      blurb: 'Copy-and-paste prompts that help an AI assistant write pandas code for spreadsheet tasks, plus a checklist for testing that code safely.',
+      inside: [
+        'Prompts for cleaning, merging and reporting',
+        'A safe-use checklist: test on dummy data first, never paste customer details',
+        'Worked examples with before and after files'
+      ],
+      forWho: 'beginners who want to use AI for code without trusting it blindly'
+    },
+    {
+      id: 'starter-bundle',
+      type: 'bundle',
+      typeLabel: 'Bundle',
+      name: 'Starter Bundle',
+      price: 349,
+      status: 'soon',
+      buyUrl: '',
+      includes: ['clean-script', 'shop-templates', 'prompt-pack'],
+      blurb: 'The cleaning script, the shop templates and the prompt pack together at a lower price.',
+      inside: [
+        'Clean Sales Data Script',
+        'Excel Templates for Small Shops',
+        'AI Prompt Pack for Spreadsheet Work'
+      ],
+      forWho: 'anyone starting out who wants everything in one go'
+    }
+  ]
+};
+
+
+  var CONFIG = merge(DEFAULTS, typeof window !== 'undefined' ? window.SITE_CONFIG : undefined);
+
+  /* PURE:START */
+  var MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+  function pad2(n) { return (n < 10 ? '0' : '') + n; }
+
+  function validDate(y, m, d) {
+    if (m < 1 || m > 12 || d < 1 || d > 31) { return null; }
+    var dt = new Date(Date.UTC(y, m - 1, d));
+    if (dt.getUTCFullYear() !== y || dt.getUTCMonth() !== m - 1 || dt.getUTCDate() !== d) { return null; }
+    return { y: y, m: m, d: d };
+  }
+
+  function fullYear(s) {
+    var n = parseInt(s, 10);
+    if (s.length === 2) { return n < 70 ? 2000 + n : 1900 + n; }
+    return n;
+  }
+
+  function monthIndex(name) {
+    var key = name.slice(0, 3).toLowerCase();
+    for (var i = 0; i < MONTHS.length; i++) {
+      if (MONTHS[i].toLowerCase() === key) { return i + 1; }
+    }
+    return 0;
+  }
+
+  function parseDate(raw) {
+    var s = String(raw).trim();
+    var m;
+    if (!s) { return null; }
+    if ((m = s.match(/^(\d{4})[\/\-.](\d{1,2})[\/\-.](\d{1,2})$/))) {
+      return validDate(+m[1], +m[2], +m[3]);
+    }
+    if ((m = s.match(/^(\d{1,2})[\/\-.](\d{1,2})[\/\-.](\d{2}|\d{4})$/))) {
+      return validDate(fullYear(m[3]), +m[2], +m[1]);
+    }
+    if ((m = s.match(/^(\d{1,2})[\s\-\/.,]+([A-Za-z]{3,9})[\s\-\/.,]+(\d{2}|\d{4})$/))) {
+      var mi = monthIndex(m[2]);
+      return mi ? validDate(fullYear(m[3]), mi, +m[1]) : null;
+    }
+    if ((m = s.match(/^([A-Za-z]{3,9})\s+(\d{1,2}),?\s+(\d{4})$/))) {
+      var mj = monthIndex(m[1]);
+      return mj ? validDate(+m[3], mj, +m[2]) : null;
+    }
+    return null;
+  }
+
+  function formatDate(o) { return pad2(o.d) + '-' + MONTHS[o.m - 1] + '-' + o.y; }
+
+  function detectDelimiter(line) {
+    var t = (line.match(/\t/g) || []).length;
+    var c = (line.match(/,/g) || []).length;
+    var s = (line.match(/;/g) || []).length;
+    if (t > 0 && t >= c && t >= s) { return '\t'; }
+    return s > c ? ';' : ',';
+  }
+
+  function parseTable(text) {
+    var src = String(text).replace(/^﻿/, '').replace(/\r\n?/g, '\n').replace(/^\n+/, '');
+    var delim = detectDelimiter(src.split('\n')[0] || '');
+    var rows = [], row = [], field = '', inQ = false;
+    for (var i = 0; i < src.length; i++) {
+      var ch = src.charAt(i);
+      if (inQ) {
+        if (ch === '"') {
+          if (src.charAt(i + 1) === '"') { field += '"'; i++; } else { inQ = false; }
+        } else { field += ch; }
+      } else if (ch === '"' && field === '') {
+        inQ = true;
+      } else if (ch === delim) {
+        row.push(field); field = '';
+      } else if (ch === '\n') {
+        row.push(field); rows.push(row); row = []; field = '';
+      } else {
+        field += ch;
+      }
+    }
+    if (field !== '' || row.length) { row.push(field); rows.push(row); }
+    return rows.filter(function (r) {
+      return r.some(function (c) { return String(c).trim() !== ''; });
+    });
+  }
+
+  function classifyHeader(h) {
+    var s = String(h).toLowerCase();
+    if (/name|naam|customer|student/.test(s)) { return 'name'; }
+    if (/phone|mobile|contact|whatsapp/.test(s)) { return 'phone'; }
+    if (/date|dob/.test(s)) { return 'date'; }
+    if (/amount|price|total|fee|paid|revenue|sales|rupee|inr|₹/.test(s)) { return 'amount'; }
+    return 'text';
+  }
+
+  function cleanCell(raw, kind) {
+    var t = raw.replace(/\s+/g, ' ').trim();
+    var v = t, issue = null;
+    if (kind === 'name') {
+      v = t.replace(/\p{L}+/gu, function (w) { return w.charAt(0).toUpperCase() + w.slice(1).toLowerCase(); });
+      if (!v) { issue = 'Missing name'; }
+    } else if (kind === 'phone') {
+      var d = t.replace(/\D/g, '');
+      v = d.length > 10 ? d.slice(-10) : d;
+      if (!d) { issue = 'Missing phone number'; } else if (v.length !== 10) { issue = 'Phone is not 10 digits'; }
+    } else if (kind === 'date') {
+      if (!t) { issue = 'Missing date'; } else {
+        var p = parseDate(t);
+        if (p) { v = formatDate(p); } else { issue = 'Date not recognised'; }
+      }
+    } else if (kind === 'amount') {
+      var nm = t.match(/\d[\d,]*(?:\.\d+)?/);
+      var n = nm ? nm[0].replace(/,/g, '') : '';
+      if (!n || isNaN(Number(n))) { v = ''; issue = 'Missing amount'; } else { v = String(Number(n)); }
+    }
+    return { v: v, changed: v !== raw && !issue, issue: issue };
+  }
+
+  function cleanTable(rows) {
+    var stats = { rowsIn: 0, rowsOut: 0, dupes: 0, fixed: 0, flagged: 0 };
+    if (!rows.length) { return { header: [], rows: [], stats: stats }; }
+    var header = rows[0].map(function (h) { return String(h).trim(); });
+    var kinds = header.map(classifyHeader);
+    var nameCol = kinds.indexOf('name'), phoneCol = kinds.indexOf('phone');
+    var out = [], seen = {};
+    stats.rowsIn = rows.length - 1;
+    for (var r = 1; r < rows.length; r++) {
+      var src = rows[r], cells = [];
+      for (var c = 0; c < header.length; c++) {
+        var raw = src[c] === undefined ? '' : String(src[c]);
+        cells.push(cleanCell(raw, kinds[c]));
+      }
+      var key;
+      if (nameCol >= 0 && phoneCol >= 0) {
+        key = cells[nameCol].v.toLowerCase() + '|' + cells[phoneCol].v;
+      } else {
+        key = cells.map(function (x) { return x.v.toLowerCase(); }).join('|');
+      }
+      if (seen[key]) { stats.dupes++; continue; }
+      seen[key] = true;
+      for (var k = 0; k < cells.length; k++) {
+        if (cells[k].changed) { stats.fixed++; }
+        if (cells[k].issue) { stats.flagged++; }
+      }
+      out.push(cells);
+    }
+    stats.rowsOut = out.length;
+    return { header: header, rows: out, stats: stats };
+  }
+
+  function toCSV(res) {
+    function q(s) { s = String(s); return /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; }
+    var lines = [res.header.map(q).join(',')];
+    res.rows.forEach(function (r) { lines.push(r.map(function (c) { return q(c.v); }).join(',')); });
+    return lines.join('\n');
+  }
+
+  var BASE = { clean: 500, merge: 500, report: 1000 };
+  var SIZE_MULT = [1, 1.6, 2.4, null];
+
+  function round50(n) { return Math.round(n / 50) * 50; }
+
+  function estimate(o) {
+    var mult = SIZE_MULT[o.size];
+    if (mult === null || mult === undefined) { return { custom: true }; }
+    var est = BASE[o.service] * mult;
+    if (o.service === 'merge') { est += Math.max(0, (o.files || 1) - 3) * 50; }
+    if (o.rush) { est *= 1.3; }
+    return { custom: false, low: round50(est), high: round50(est * 1.4) };
+  }
+
+  /* Settings and message helpers */
+  function isPlain(x) { return x !== null && typeof x === 'object' && !Array.isArray(x); }
+
+  function merge(base, over) {
+    var out = {}, k;
+    for (k in base) { if (Object.prototype.hasOwnProperty.call(base, k)) { out[k] = base[k]; } }
+    if (isPlain(over)) {
+      for (k in over) {
+        if (!Object.prototype.hasOwnProperty.call(over, k) || over[k] === undefined || over[k] === null) { continue; }
+        out[k] = (isPlain(base[k]) && isPlain(over[k])) ? merge(base[k], over[k]) : over[k];
+      }
+    }
+    return out;
+  }
+
+  function safeUrl(u) {
+    var s = String(u || '').trim();
+    return /^https?:\/\/[^\s"'<>]+$/i.test(s) ? s : '';
+  }
+
+  function cleanHandle(h) { return String(h || '').replace(/[^A-Za-z0-9._]/g, ''); }
+
+  function igDm(handle) { return 'https://ig.me/m/' + cleanHandle(handle); }
+  function igProfile(handle) { return 'https://www.instagram.com/' + cleanHandle(handle) + '/'; }
+
+  function waLink(num, text) {
+    var n = String(num || '').replace(/\D/g, '');
+    return n.length >= 8 ? 'https://wa.me/' + n + '?text=' + encodeURIComponent(text) : '';
+  }
+
+  function mailLink(addr, subject, body) {
+    var a = String(addr || '').trim();
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(a)
+      ? 'mailto:' + a + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body)
+      : '';
+  }
+
+  function upiLink(id, name, amount, note) {
+    var u = String(id || '').trim();
+    if (!/^[A-Za-z0-9._-]{2,}@[A-Za-z0-9]{2,}$/.test(u)) { return ''; }
+    return 'upi://pay?pa=' + encodeURIComponent(u) + '&pn=' + encodeURIComponent(name || '') +
+      '&am=' + encodeURIComponent(String(amount)) + '&cu=INR&tn=' + encodeURIComponent(note || '');
+  }
+
+  function starterMessage(o) {
+    var hi = 'Hi! ' + (o.name ? "I'm " + o.name + '. ' : '');
+    if (o.topic === 'course') {
+      return hi + 'I would like to join the waitlist for the course "' + (o.courseName || 'the course') + '". Please message me when the first batch opens.';
+    }
+    if (o.topic === 'product') {
+      return o.productName
+        ? hi + 'I would like to be notified when "' + o.productName + '" is ready.'
+        : hi + 'I am interested in one of your digital products.';
+    }
+    if (o.topic === 'other') { return hi + 'I have a question: '; }
+    return hi + 'I need help with a spreadsheet project.\nWhat I need: \nApproximate size of the data: \nWhen I need it: ';
+  }
+
+  function bundleSavings(products, bundle) {
+    if (!bundle || !Array.isArray(bundle.includes) || !bundle.includes.length) { return 0; }
+    var sum = 0;
+    for (var i = 0; i < bundle.includes.length; i++) {
+      var found = null;
+      for (var j = 0; j < products.length; j++) { if (products[j].id === bundle.includes[i]) { found = products[j]; } }
+      if (!found) { return 0; }
+      sum += Number(found.price) || 0;
+    }
+    return Math.max(0, sum - (Number(bundle.price) || 0));
+  }
+  /* PURE:END */
+
+  if (typeof document === 'undefined') { return; }
+
+  var root = document.documentElement;
+  root.classList.add('js');
+  function $(s, c) { return (c || document).querySelector(s); }
+  function $$(s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); }
+  var reduce = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  var fmtIN = new Intl.NumberFormat('en-IN');
+  function money(n) { return '₹' + fmtIN.format(n); }
+  function el(tag, cls, text) {
+    var n = document.createElement(tag);
+    if (cls) { n.className = cls; }
+    if (text !== undefined) { n.textContent = text; }
+    return n;
+  }
+
+  /* Normalise settings */
+  CONFIG.instagram = cleanHandle(CONFIG.instagram) || 'the_ai_skills_school';
+  var PRODUCTS = (Array.isArray(CONFIG.products) ? CONFIG.products : []).filter(function (p) {
+    return p && p.id && p.name && isFinite(Number(p.price));
+  });
+  function findProduct(id) {
+    for (var i = 0; i < PRODUCTS.length; i++) { if (PRODUCTS[i].id === id) { return PRODUCTS[i]; } }
+    return null;
+  }
+
+  /* Bind settings into the page */
+  $$('[data-bind="course-name"]').forEach(function (n) { n.textContent = CONFIG.course.name; });
+  $$('[data-bind="course-price"]').forEach(function (n) { n.textContent = fmtIN.format(Number(CONFIG.course.price) || 0); });
+  $$('[data-bind="course-duration"]').forEach(function (n) { n.textContent = CONFIG.course.duration; });
+  $$('[data-ig]').forEach(function (a) { a.href = igProfile(CONFIG.instagram); });
+  $$('[data-ig-handle]').forEach(function (n) { n.textContent = '@' + CONFIG.instagram; });
+
+  /* Preferences, theme */
+  function loadPref(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+  function savePref(k, v) { try { localStorage.setItem(k, v); } catch (e) { /* storage unavailable */ } }
+  var savedTheme = loadPref('theme');
+  if (savedTheme === 'light' || savedTheme === 'dark') { root.setAttribute('data-theme', savedTheme); }
+  $('#theme').addEventListener('click', function () {
+    var cur = root.getAttribute('data-theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    var next = cur === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    savePref('theme', next);
+  });
+
+  /* Toast and copy */
+  var toastEl = $('#toast'), toastTimer = null;
+  function toast(msg) {
+    toastEl.textContent = msg;
+    toastEl.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { toastEl.classList.remove('show'); }, 2600);
+  }
+
+  function legacyCopy(text) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0';
+    document.body.appendChild(ta);
+    ta.select();
+    var ok = false;
+    try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+    document.body.removeChild(ta);
+    return ok;
+  }
+
+  function copyText(text, okMsg, statusEl) {
+    function done(ok) {
+      var m = ok ? okMsg : 'Copying was blocked on this device. Select the text and copy it by hand.';
+      if (statusEl) { statusEl.textContent = m; }
+      toast(m);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () { done(true); }, function () { done(legacyCopy(text)); });
+    } else {
+      done(legacyCopy(text));
+    }
+  }
+
+  /* Router: five views switched by the URL hash */
+  var VIEWS = ['home', 'tools', 'course', 'products', 'contact'];
+  var TITLES = {
+    home: 'The AI Skills School | Python and Excel automation',
+    tools: 'Free Excel data cleaner and project estimator | The AI Skills School',
+    course: 'Python for Excel Automation course | The AI Skills School',
+    products: 'Digital products: templates, scripts and prompts | The AI Skills School',
+    contact: 'Message me | The AI Skills School'
+  };
+  var mainEl = $('#main'), navEl = $('#nav'), menuBtn = $('#menu-btn');
+  var navLinks = $$('[data-view-link]');
+  var currentView = null, firstRoute = true;
+
+  function closeMenu() {
+    navEl.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded', 'false');
+    menuBtn.setAttribute('aria-label', 'Open menu');
+  }
+  menuBtn.addEventListener('click', function () {
+    var open = navEl.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { closeMenu(); } });
+  document.addEventListener('click', function (e) { if (!e.target.closest('.top')) { closeMenu(); } });
+
+  function scrollTop() {
+    try { window.scrollTo({ top: 0, left: 0, behavior: 'instant' }); } catch (e) { window.scrollTo(0, 0); }
+  }
+
+  function setView(name, toTop) {
+    if (VIEWS.indexOf(name) < 0) { name = 'home'; }
+    var changed = name !== currentView;
+    currentView = name;
+    root.setAttribute('data-v', name);
+    document.title = TITLES[name];
+    navLinks.forEach(function (a) {
+      if (a.getAttribute('data-view-link') === name) { a.setAttribute('aria-current', 'page'); } else { a.removeAttribute('aria-current'); }
+    });
+    closeMenu();
+    if (changed && toTop !== false) { scrollTop(); }
+  }
+
+  function route() {
+    var h = (location.hash || '').replace(/^#/, '');
+    try { h = decodeURIComponent(h); } catch (e) { /* keep raw */ }
+    var user = !firstRoute;
+    firstRoute = false;
+    if (h === 'main') {
+      if (!currentView) { setView('home'); }
+      mainEl.focus({ preventScroll: true });
+      return;
+    }
+    if (!h) { setView('home'); return; }
+    if (VIEWS.indexOf(h) >= 0) {
+      setView(h);
+      if (user) { mainEl.focus({ preventScroll: true }); }
+      return;
+    }
+    var target = document.getElementById(h);
+    if (target) {
+      var host = target.closest('[data-view]');
+      setView(host ? host.getAttribute('data-view') : 'home', false);
+      requestAnimationFrame(function () { target.scrollIntoView(); });
+      return;
+    }
+    setView('home');
+  }
+  window.addEventListener('hashchange', route);
+
+  /* Header state, scroll progress */
+  var header = $('.top'), progress = $('.progress'), ticking = false;
+  function onScroll() {
+    if (ticking) { return; }
+    ticking = true;
+    requestAnimationFrame(function () {
+      var y = window.pageYOffset || root.scrollTop;
+      var h = root.scrollHeight - window.innerHeight;
+      header.classList.toggle('scrolled', y > 8);
+      progress.style.setProperty('--p', h > 0 ? Math.min(1, y / h) : 0);
+      ticking = false;
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  /* Hero spotlight and rotating word */
+  var hero = $('#hero');
+  if (window.matchMedia && window.matchMedia('(hover: hover)').matches && !reduce) {
+    hero.addEventListener('pointermove', function (e) {
+      var r = hero.getBoundingClientRect();
+      hero.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      hero.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    });
+  }
+  var rot = $('#rot');
+  if (rot && !reduce && rot.animate) {
+    var words = ['shops', 'clinics', 'coaching centres', 'tuition classes', 'freelancers'];
+    var wi = 0;
+    setInterval(function () {
+      if (root.getAttribute('data-v') !== 'home') { return; }
+      var outAnim = rot.animate(
+        [{ opacity: 1, transform: 'translateY(0)' }, { opacity: 0, transform: 'translateY(-40%)' }],
+        { duration: 220, easing: 'ease-in', fill: 'forwards' }
+      );
+      outAnim.onfinish = function () {
+        wi = (wi + 1) % words.length;
+        rot.textContent = words[wi];
+        outAnim.cancel();
+        rot.animate(
+          [{ opacity: 0, transform: 'translateY(40%)' }, { opacity: 1, transform: 'translateY(0)' }],
+          { duration: 260, easing: 'ease-out' }
+        );
+      };
+    }, 2600);
+  }
+
+  /* Scroll reveal. Content stays readable before it animates. */
+  var io = null;
+  if ('IntersectionObserver' in window) {
+    io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -5% 0px' });
+  }
+  function addReveal(nodes) {
+    if (!io) { return; }
+    nodes.forEach(function (n) {
+      if (n.classList.contains('reveal')) { return; }
+      var idx = Array.prototype.indexOf.call(n.parentNode.children, n);
+      n.style.setProperty('--d', Math.min(idx, 5) * 70 + 'ms');
+      n.classList.add('reveal');
+      io.observe(n);
+    });
+  }
+  addReveal($$('.sec-lead, section h2, .svc, .lab > .card, .stats, .legend, details.more, .est > *, .tile, .steps li, .about p, .faq details, .cta-box, .outcome, .module, .proj, .fit > div, .promise, .buy-steps li, .composer, .channels li'));
+
+  /* Hero sheet: explain each yellow cell */
+  var sheet = $('#sheet'), fixline = $('#fixline'), fixDefault = fixline.textContent;
+  function showFix(e) {
+    var t = e.target.closest ? e.target.closest('[data-fix]') : null;
+    if (t) { fixline.textContent = t.getAttribute('data-fix'); }
+  }
+  sheet.addEventListener('mouseover', showFix);
+  sheet.addEventListener('focusin', showFix);
+  sheet.addEventListener('mouseleave', function () { fixline.textContent = fixDefault; });
+
+  /* FAQ: one open at a time inside each list */
+  $$('.faq').forEach(function (list) {
+    var items = $$('details', list);
+    items.forEach(function (d) {
+      d.addEventListener('toggle', function () {
+        if (d.open) { items.forEach(function (o) { if (o !== d) { o.open = false; } }); }
+      });
+    });
+  });
+
+  /* Number animation */
+  function animateNumber(node, to) {
+    var from = Number(node.getAttribute('data-v') || 0);
+    node.setAttribute('data-v', to);
+    if (node._raf) { cancelAnimationFrame(node._raf); }
+    if (reduce || from === to) { node.textContent = fmtIN.format(to); return; }
+    var t0 = null, dur = 380;
+    function step(ts) {
+      if (t0 === null) { t0 = ts; }
+      var p = Math.min(1, (ts - t0) / dur);
+      var e = 1 - Math.pow(1 - p, 3);
+      node.textContent = fmtIN.format(Math.round(from + (to - from) * e));
+      if (p < 1) { node._raf = requestAnimationFrame(step); }
+    }
+    node._raf = requestAnimationFrame(step);
+  }
+
+  /* ---------- Cleaner ---------- */
+  var SAMPLE = 'Name,Phone,Date,Amount\n' +
+    'ramesh kumar ,98765 43210,3/10/26,"₹1,200"\n' +
+    'Ramesh Kumar,9876543210,03-Oct-2026,1200\n' +
+    'SUNITA DEVI,+91 98123 45678,04 Oct 2026,850\n' +
+    'Amit Verma,9811122233,05/10/2026,\n' +
+    'sunita devi,9812345678,04/10/2026,850';
+  var inEl = $('#in'), outEl = $('#out'), issuesEl = $('#issues'), demoStatus = $('#demo-status'), rowcap = $('#rowcap');
+  var lastClean = null, debounce = null;
+
+  function render() {
+    var res = cleanTable(parseTable(inEl.value));
+    lastClean = res;
+    outEl.textContent = '';
+    issuesEl.textContent = '';
+    demoStatus.textContent = '';
+    var shown = res.rows.slice(0, 200);
+    rowcap.textContent = res.rows.length > 200 ? 'Showing first 200 rows' : '';
+    if (!res.header.length) {
+      outEl.appendChild(el('p', 'empty', 'Paste some rows on the left and the clean version appears here.'));
+    } else {
+      var table = el('table', 'cells result');
+      var thead = el('thead'), hr = el('tr');
+      res.header.forEach(function (h) {
+        var th = el('th', '', h || '(blank)');
+        th.scope = 'col';
+        hr.appendChild(th);
+      });
+      thead.appendChild(hr);
+      table.appendChild(thead);
+      var tb = el('tbody');
+      shown.forEach(function (cells, i) {
+        var tr = el('tr', 'row-in');
+        tr.style.setProperty('--i', Math.min(i, 12) * 35 + 'ms');
+        cells.forEach(function (c) {
+          var td = el('td', c.issue ? 'bad' : (c.changed ? 'chg' : ''), c.v || (c.issue ? '(empty)' : ''));
+          if (c.issue) { td.title = c.issue; }
+          tr.appendChild(td);
+        });
+        tb.appendChild(tr);
+      });
+      table.appendChild(tb);
+      outEl.appendChild(table);
+
+      var count = 0;
+      shown.forEach(function (cells, i) {
+        cells.forEach(function (c, ci) {
+          if (c.issue && count < 6) {
+            issuesEl.appendChild(el('li', '', 'Row ' + (i + 2) + ', ' + (res.header[ci] || 'column ' + (ci + 1)) + ': ' + c.issue));
+            count++;
+          }
+        });
+      });
+      issuesEl.hidden = count === 0;
+    }
+    animateNumber($('#s-in'), res.stats.rowsIn);
+    animateNumber($('#s-out'), res.stats.rowsOut);
+    animateNumber($('#s-dupes'), res.stats.dupes);
+    animateNumber($('#s-fixed'), res.stats.fixed);
+    animateNumber($('#s-flag'), res.stats.flagged);
+  }
+
+  inEl.value = SAMPLE;
+  render();
+  inEl.addEventListener('input', function () {
+    clearTimeout(debounce);
+    debounce = setTimeout(render, 220);
+  });
+  $('#run').addEventListener('click', render);
+  $('#reset').addEventListener('click', function () { inEl.value = SAMPLE; render(); });
+  $('#copycsv').addEventListener('click', function () {
+    if (!lastClean || !lastClean.header.length) { demoStatus.textContent = 'Nothing to copy yet.'; return; }
+    copyText(toCSV(lastClean), 'Clean CSV copied. Paste it into Excel or Sheets.', demoStatus);
+  });
+  $('#dlcsv').addEventListener('click', function () {
+    if (!lastClean || !lastClean.header.length) { demoStatus.textContent = 'Nothing to download yet.'; return; }
+    try {
+      var blob = new Blob(['﻿' + toCSV(lastClean)], { type: 'text/csv;charset=utf-8' });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = 'clean-data.csv';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(function () { URL.revokeObjectURL(url); }, 1500);
+      demoStatus.textContent = 'Downloaded clean-data.csv';
+    } catch (e) {
+      demoStatus.textContent = 'Download is not available here. Use Copy clean CSV instead.';
+    }
+  });
+  $('#file').addEventListener('change', function (e) {
+    var f = e.target.files && e.target.files[0];
+    if (!f) { return; }
+    if (f.size > 1500000) { demoStatus.textContent = 'That file is too large for the demo (limit 1.5 MB).'; e.target.value = ''; return; }
+    var reader = new FileReader();
+    reader.onload = function () {
+      var text = String(reader.result || '');
+      var lines = text.split(/\r?\n/);
+      var note = '';
+      if (lines.length > 20001) { text = lines.slice(0, 20001).join('\n'); note = 'Only the first 20,000 rows were used.'; }
+      inEl.value = text;
+      render();
+      if (note) { demoStatus.textContent = note; }
+    };
+    reader.onerror = function () { demoStatus.textContent = 'Could not read that file.'; };
+    reader.readAsText(f);
+    e.target.value = '';
+  });
+
+  /* ---------- Estimator ---------- */
+  var SERVICE_LABELS = { clean: 'Data cleaning', merge: 'Merging files', report: 'Auto report' };
+  var SIZE_LABELS = ['up to 500 rows', '500 to 5,000 rows', '5,000 to 50,000 rows', 'more than 50,000 rows'];
+  var svcRadios = $$('input[name="svc"]');
+  var sizeSel = $('#size'), filesIn = $('#files'), filesWrap = $('#files-wrap'), rushCk = $('#rush');
+  var pRange = $('#p-range'), pCustom = $('#p-custom'), pNote = $('#price-note'), estMsg = $('#est-msg'), estStatus = $('#est-status');
+
+  function readInputs() {
+    var svc = 'clean';
+    svcRadios.forEach(function (r) { if (r.checked) { svc = r.value; } });
+    var files = parseInt(filesIn.value, 10);
+    if (isNaN(files) || files < 1) { files = 1; }
+    if (files > 60) { files = 60; }
+    return { service: svc, size: parseInt(sizeSel.value, 10), files: files, rush: rushCk.checked };
+  }
+
+  function updateEstimate() {
+    var o = readInputs();
+    var est = estimate(o);
+    filesWrap.hidden = o.service !== 'merge';
+    var priceText;
+    if (est.custom) {
+      pRange.hidden = true;
+      pCustom.hidden = false;
+      pNote.textContent = 'Data this large needs a look first. Send a sample and I will quote it.';
+      priceText = 'a custom quote';
+    } else {
+      pRange.hidden = false;
+      pCustom.hidden = true;
+      animateNumber($('#p-lo'), est.low);
+      animateNumber($('#p-hi'), est.high);
+      pNote.textContent = 'Early-client pricing. The final price is confirmed after I see a sample file.';
+      priceText = money(est.low) + ' to ' + money(est.high);
+    }
+    var lines = [
+      'Hi! I found The AI Skills School website and I need help with: ' + SERVICE_LABELS[o.service] + '.',
+      'Data size: ' + SIZE_LABELS[o.size] + '.'
+    ];
+    if (o.service === 'merge') { lines.push('Number of files: ' + o.files + '.'); }
+    lines.push('Timeline: ' + (o.rush ? 'within 24 hours.' : 'standard.'));
+    lines.push('Ballpark I saw on the site: ' + priceText + '.');
+    lines.push('I can send a sample file with personal details removed.');
+    estMsg.value = lines.join('\n');
+    estStatus.textContent = '';
+  }
+  svcRadios.forEach(function (r) { r.addEventListener('change', updateEstimate); });
+  sizeSel.addEventListener('change', updateEstimate);
+  filesIn.addEventListener('input', updateEstimate);
+  rushCk.addEventListener('change', updateEstimate);
+  $('#est-copy').addEventListener('click', function () {
+    copyText(estMsg.value, 'Message copied.', estStatus);
+  });
+  $('#est-send').addEventListener('click', function () {
+    openContact({ topic: 'project', message: estMsg.value });
+  });
+  updateEstimate();
+
+  /* ---------- Products ---------- */
+  var GLYPH = { script: 'PY', template: 'XLSX', prompts: 'AI', bundle: 'PACK' };
+  var TYPE_LABEL = { script: 'Scripts', template: 'Templates', prompts: 'Prompt packs', bundle: 'Bundles' };
+  var pgrid = $('#pgrid'), chipsEl = $('#chips');
+
+  function buyControl(p) {
+    var wrap = el('div', 'row');
+    var live = p.status === 'live';
+    var url = live ? safeUrl(p.buyUrl) : '';
+    var upi = live && !url ? upiLink(CONFIG.upiId, CONFIG.upiName, Number(p.price), p.name) : '';
+    if (url) {
+      var a = el('a', 'btn primary small', 'Buy now');
+      a.href = url; a.target = '_blank'; a.rel = 'noopener';
+      wrap.appendChild(a);
+    } else if (upi) {
+      var u = el('a', 'btn primary small', 'Pay ' + money(p.price) + ' by UPI');
+      u.href = upi;
+      wrap.appendChild(u);
+      var paid = el('button', 'btn ghost small', "I've paid");
+      paid.type = 'button';
+      paid.setAttribute('data-open-contact', 'product');
+      paid.setAttribute('data-product', p.id);
+      paid.setAttribute('data-paid', '1');
+      wrap.appendChild(paid);
+    } else {
+      var n = el('button', 'btn primary small', 'Notify me');
+      n.type = 'button';
+      n.setAttribute('data-open-contact', 'product');
+      n.setAttribute('data-product', p.id);
+      wrap.appendChild(n);
+    }
+    return wrap;
+  }
+
+  function buildProduct(p) {
+    var art = el('article', 'pcard');
+    art.setAttribute('data-type', p.type || 'other');
+    var cover = el('div', 'cover');
+    cover.setAttribute('data-t', p.type || 'other');
+    cover.setAttribute('aria-hidden', 'true');
+    cover.appendChild(el('span', 'glyph', GLYPH[p.type] || 'FILE'));
+    cover.appendChild(el('span', 'covername', p.typeLabel || p.type || 'File'));
+    art.appendChild(cover);
+
+    var body = el('div', 'pbody');
+    var pills = el('div', 'prow');
+    pills.appendChild(el('span', 'pill', p.typeLabel || p.type || 'File'));
+    var live = p.status === 'live';
+    pills.appendChild(el('span', 'pill ' + (live ? 'live' : 'soon'), live ? 'Available' : 'In preparation'));
+    body.appendChild(pills);
+    body.appendChild(el('h3', '', p.name));
+    if (p.blurb) { body.appendChild(el('p', 'blurb', p.blurb)); }
+
+    var det = el('details', 'inside');
+    det.appendChild(el('summary', '', "What's inside"));
+    var ul = el('ul', 'ticks small');
+    (Array.isArray(p.inside) ? p.inside : []).forEach(function (t) { ul.appendChild(el('li', '', t)); });
+    det.appendChild(ul);
+    if (p.forWho) { det.appendChild(el('p', 'forwho', 'Best for: ' + p.forWho + '.')); }
+    body.appendChild(det);
+
+    var foot = el('div', 'pfoot');
+    var price = el('div', 'pprice');
+    price.appendChild(el('b', '', money(Number(p.price))));
+    var save = bundleSavings(PRODUCTS, p);
+    price.appendChild(el('small', '', save > 0 ? 'Save ' + money(save) + ' vs buying separately' : 'one-time'));
+    foot.appendChild(price);
+    foot.appendChild(buyControl(p));
+    body.appendChild(foot);
+    if (live && !safeUrl(p.buyUrl) && upiLink(CONFIG.upiId, CONFIG.upiName, Number(p.price), p.name)) {
+      body.appendChild(el('p', 'pnote', 'After paying, tap "I\'ve paid" and send me your payment screenshot so I can send the download.'));
+    }
+    art.appendChild(body);
+    return art;
+  }
+
+  function renderProducts(filter) {
+    pgrid.textContent = '';
+    var list = PRODUCTS.filter(function (p) { return filter === 'all' || p.type === filter; });
+    list.forEach(function (p) { pgrid.appendChild(buildProduct(p)); });
+    addReveal($$('.pcard', pgrid));
+    if (!list.length) { pgrid.appendChild(el('p', 'empty', 'No products in this group yet.')); }
+  }
+
+  function renderChips() {
+    chipsEl.textContent = '';
+    var types = [];
+    PRODUCTS.forEach(function (p) { if (p.type && types.indexOf(p.type) < 0) { types.push(p.type); } });
+    var defs = [{ key: 'all', label: 'All' }].concat(types.map(function (t) { return { key: t, label: TYPE_LABEL[t] || t }; }));
+    defs.forEach(function (d, i) {
+      var b = el('button', 'chip', d.label);
+      b.type = 'button';
+      b.setAttribute('data-filter', d.key);
+      b.setAttribute('aria-pressed', i === 0 ? 'true' : 'false');
+      chipsEl.appendChild(b);
+    });
+  }
+  chipsEl.addEventListener('click', function (e) {
+    var b = e.target.closest('.chip');
+    if (!b) { return; }
+    $$('.chip', chipsEl).forEach(function (c) { c.setAttribute('aria-pressed', c === b ? 'true' : 'false'); });
+    renderProducts(b.getAttribute('data-filter'));
+  });
+  renderChips();
+  renderProducts('all');
+  if (PRODUCTS.every(function (p) { return p.status === 'live'; })) {
+    $('#products-note').hidden = true;
+  }
+
+  /* ---------- Contact ---------- */
+  var topicSel = $('#c-topic'), prodWrap = $('#c-product-wrap'), prodSel = $('#c-product');
+  var nameIn = $('#c-name'), msgIn = $('#c-msg'), replyWrap = $('#c-reply-wrap'), replyIn = $('#c-reply'), botIn = $('#c-bot');
+  var errEl = $('#c-err'), cStatus = $('#c-status'), cHelp = $('#c-help');
+  var sendForm = $('#send-form'), sendIg = $('#send-ig'), sendWa = $('#send-wa'), sendMail = $('#send-mail'), copyBtn = $('#copy-msg');
+  var dirty = false;
+  var formMode = /^[A-Za-z0-9-]{16,}$/.test(String(CONFIG.formKey || '').trim());
+
+  PRODUCTS.forEach(function (p) {
+    var o = el('option', '', p.name + ' (' + money(Number(p.price)) + ')');
+    o.value = p.id;
+    prodSel.appendChild(o);
+  });
+  if (!PRODUCTS.length) { topicSel.removeChild(topicSel.querySelector('option[value="product"]')); }
+
+  sendIg.href = igDm(CONFIG.instagram);
+
+  function starter() {
+    var p = findProduct(prodSel.value);
+    return starterMessage({ topic: topicSel.value, name: nameIn.value.trim(), productName: p ? p.name : '', courseName: CONFIG.course.name });
+  }
+  function updateLinks() {
+    var text = msgIn.value.trim();
+    var wa = waLink(CONFIG.whatsapp, text);
+    sendWa.hidden = !wa;
+    if (wa) { sendWa.href = wa; }
+    var mail = mailLink(CONFIG.email, 'Message from The AI Skills School website', text);
+    sendMail.hidden = !mail;
+    if (mail) { sendMail.href = mail; }
+  }
+  function regenerate() {
+    if (!dirty) { msgIn.value = starter(); }
+    updateLinks();
+  }
+  function syncProductField() { prodWrap.hidden = topicSel.value !== 'product'; }
+
+  if (formMode) {
+    sendForm.hidden = false;
+    replyWrap.hidden = false;
+    sendIg.className = 'btn ghost';
+    cHelp.textContent = 'Send message delivers it straight to me. You can also use Instagram, which copies your message first.';
+  }
+
+  topicSel.addEventListener('change', function () { syncProductField(); regenerate(); errEl.textContent = ''; });
+  prodSel.addEventListener('change', regenerate);
+  nameIn.addEventListener('input', regenerate);
+  msgIn.addEventListener('input', function () { dirty = msgIn.value.trim() !== ''; updateLinks(); errEl.textContent = ''; });
+
+  function needMessage() {
+    if (msgIn.value.trim().length < 8) {
+      errEl.textContent = 'Please write a short message first.';
+      msgIn.focus();
+      return false;
+    }
+    errEl.textContent = '';
+    return true;
+  }
+
+  sendIg.addEventListener('click', function (e) {
+    if (!needMessage()) { e.preventDefault(); return; }
+    copyText(msgIn.value.trim(), 'Message copied. Paste it into the Instagram chat.', cStatus);
+  });
+  sendWa.addEventListener('click', function (e) { if (!needMessage()) { e.preventDefault(); } });
+  sendMail.addEventListener('click', function (e) { if (!needMessage()) { e.preventDefault(); } });
+  copyBtn.addEventListener('click', function () {
+    if (!needMessage()) { return; }
+    copyText(msgIn.value.trim(), 'Message copied.', cStatus);
+  });
+
+  function submitForm() {
+    if (!needMessage()) { return; }
+    if (botIn.value) { return; }
+    var reply = replyIn.value.trim();
+    if (!reply) { errEl.textContent = 'Please tell me how to reach you.'; replyIn.focus(); return; }
+    if (typeof fetch !== 'function') { errEl.textContent = 'Sending is not available here. Please use Instagram or copy the message.'; return; }
+    var who = nameIn.value.trim();
+    var payload = {
+      access_key: String(CONFIG.formKey).trim(),
+      subject: 'New message from The AI Skills School website',
+      name: who || 'Website visitor',
+      message: msgIn.value.trim() + '\n\nReply to: ' + reply,
+      botcheck: ''
+    };
+    if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(reply)) { payload.email = reply; }
+    sendForm.disabled = true;
+    cStatus.textContent = 'Sending...';
+    errEl.textContent = '';
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload)
+    }).then(function (r) { return r.json(); }).then(function (d) {
+      if (d && d.success) {
+        cStatus.textContent = 'Thank you! Your message was sent. I will reply as soon as I can.';
+        toast('Message sent');
+        dirty = false;
+        replyIn.value = '';
+        regenerate();
+      } else {
+        throw new Error('rejected');
+      }
+    }).catch(function () {
+      cStatus.textContent = '';
+      errEl.textContent = 'The message could not be sent. Please use Instagram, or copy the message and send it yourself.';
+    }).then(function () { sendForm.disabled = false; });
+  }
+
+  $('#composer').addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (formMode) { submitForm(); } else { copyBtn.click(); }
+  });
+
+  function renderChannels() {
+    var ul = $('#channels');
+    ul.textContent = '';
+    function row(label, node) {
+      var li = el('li');
+      li.appendChild(el('b', '', label));
+      li.appendChild(node);
+      ul.appendChild(li);
+      addReveal([li]);
+    }
+    var ig = el('a', '', '@' + CONFIG.instagram);
+    ig.href = igProfile(CONFIG.instagram);
+    ig.target = '_blank';
+    ig.rel = 'noopener';
+    row('Instagram', ig);
+    if (waLink(CONFIG.whatsapp, 'x')) { row('WhatsApp', el('span', '', 'Use the WhatsApp button')); }
+    if (mailLink(CONFIG.email, 's', 'b')) { row('Email', el('span', '', String(CONFIG.email).trim())); }
+    row('Replies', el('span', '', "As soon as I can. I'm a student."));
+  }
+
+  function openContact(opts) {
+    opts = opts || {};
+    if (opts.topic && topicSel.querySelector('option[value="' + opts.topic + '"]')) { topicSel.value = opts.topic; }
+    syncProductField();
+    if (opts.product && findProduct(opts.product)) { prodSel.value = opts.product; }
+    if (opts.message !== undefined) {
+      msgIn.value = opts.message;
+      dirty = true;
+    } else {
+      dirty = false;
+      msgIn.value = starter();
+    }
+    updateLinks();
+    errEl.textContent = '';
+    cStatus.textContent = '';
+    if (location.hash !== '#contact') { location.hash = 'contact'; } else { route(); }
+  }
+
+  document.addEventListener('click', function (e) {
+    var t = e.target.closest ? e.target.closest('[data-open-contact]') : null;
+    if (!t) { return; }
+    e.preventDefault();
+    var topic = t.getAttribute('data-open-contact');
+    var pid = t.getAttribute('data-product');
+    var opts = { topic: topic };
+    if (pid) { opts.product = pid; }
+    if (t.getAttribute('data-paid') && pid && findProduct(pid)) {
+      var p = findProduct(pid);
+      opts.message = 'Hi! I paid ' + money(Number(p.price)) + ' for "' + p.name + '" by UPI. I will send my payment screenshot in this chat.';
+    }
+    openContact(opts);
+  });
+
+  syncProductField();
+  msgIn.value = starter();
+  updateLinks();
+  renderChannels();
+
+  /* Start */
+  route();
+})();
+
+</script>
+</body>
+</html>
